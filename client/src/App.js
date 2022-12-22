@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NavBar from './components/navigation/NavBar';
 import HomePage from "./components/static/HomePage";
 import Login from "./components/sessions/Login";
 import Signup from "./components/sessions/Signup";
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login onLogin={setUser} />} />

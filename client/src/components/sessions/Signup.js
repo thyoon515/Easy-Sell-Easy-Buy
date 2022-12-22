@@ -7,7 +7,6 @@ const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
   const [errors, setErrors] = useState([]);
   
 
@@ -18,8 +17,7 @@ const Signup = () => {
     const user = {
       username,
       password, 
-      email,
-      phoneNumber
+      email
     }
     fetch(`/users`, {
       method: "POST",
@@ -54,11 +52,6 @@ const Signup = () => {
           <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
       </label>
       <br/>
-      <label>
-        Phone #:
-          <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-      </label>
-      <br/>
       <button type='submit'>Signup</button>
       <br/>
         <div>
@@ -70,7 +63,6 @@ const Signup = () => {
           </ul>
           )}
         </div>
-        
     </form>
   )
 }

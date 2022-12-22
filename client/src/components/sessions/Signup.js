@@ -8,7 +8,7 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [error, setError] = useState([]);
+  const [errors, setErrors] = useState([]);
   
 
   const navigate = useNavigate();
@@ -30,7 +30,9 @@ const Signup = () => {
       if(res.ok){
           res.json().then(navigate('/'))
       }else{
-          res.json().then( e => setError(e.error))
+          res.json().then((e) => {
+            setErrors(e.errors)
+          })
       }
     })
   }
@@ -58,6 +60,17 @@ const Signup = () => {
       </label>
       <br/>
       <button type='submit'>Signup</button>
+      <br/>
+        <div>
+          {errors.length > 0 && (
+          <ul style={{ color: "red" }}>
+            {errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+          )}
+        </div>
+        
     </form>
   )
 }

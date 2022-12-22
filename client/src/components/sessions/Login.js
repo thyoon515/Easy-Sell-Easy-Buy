@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Login = ({ onLogin }) => {
 
   const [username, setUsername] = useState('');
-  //const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
 
@@ -23,14 +23,13 @@ const Login = ({ onLogin }) => {
       navigate('/');
     }
   
-
   const handleUsernameChange = (e) => {
     setUsername(e.target.value)
   }
 
-  // const handlePasswordChange = (e) => {
-    // setPassword(e.target.value)
-  // }
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value)
+  }
 
 
   return (
@@ -39,12 +38,12 @@ const Login = ({ onLogin }) => {
           Username:
             <input type="text" value={username} onChange={handleUsernameChange} />
         </label>
-      {/* <br />
+      <br />
         <label>
           Password:
             <input type="password" value={password} onChange={handlePasswordChange
             } />
-        </label> */}
+        </label>
       <br />
         <button type='submit'>Login</button>
     </form>

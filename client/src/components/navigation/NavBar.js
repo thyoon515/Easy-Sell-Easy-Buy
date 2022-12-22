@@ -6,11 +6,15 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import { useTheme } from '@mui/material/styles';
 
 const NavBar = () => {
+  
+  const theme = useTheme();
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <Box sx={{ flexGrow: 1 }} >
+      <AppBar position="static" color="primary">
         <Toolbar>
           <IconButton
             size="large"
@@ -20,7 +24,7 @@ const NavBar = () => {
             sx={{ mr: 2 }}
           >
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography color="#fafafa" variant="h6" component="div" sx={{ flexGrow: 1 }}>
             ESEB
           </Typography>
           <Button color="inherit" component={ Link } to="/">Home</Button>

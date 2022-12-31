@@ -63,7 +63,7 @@ const Signup = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Sign Up
         </Typography>
         <Box component="form" noValidate onSubmit={handleSignupSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -120,7 +120,7 @@ const Signup = () => {
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="/login" variant="body2">
-                Already have an account? Sign in
+                Already have an account? Login
               </Link>
             </Grid>
           </Grid>

@@ -13,7 +13,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
-const Signup = () => {
+const Signup = ({ setCurrentUser }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -38,7 +38,10 @@ const Signup = () => {
     })
     .then(res => {
       if(res.ok){
-          res.json().then(navigate('/'))
+          res.json().then(user => {
+            setCurrentUser(user)
+            navigate('/')
+          })
       }else{
           res.json().then((e) => {
             setErrors(e.errors)

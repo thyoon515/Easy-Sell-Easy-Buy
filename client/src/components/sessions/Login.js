@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const Login = ({ onLogin }) => {
+const Login = ({ setCurrentUser }) => {
 
   const theme = createTheme();
 
@@ -29,12 +29,15 @@ const Login = ({ onLogin }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username }),
+      body: JSON.stringify({ 
+        username,
+        password
+     }),
     })
       .then(res => {
         if(res.ok){
             res.json().then((user) => {
-              onLogin(user)
+              setCurrentUser(user)
               navigate('/')
             })
         }else{

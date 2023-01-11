@@ -7,12 +7,12 @@ import Signup from "./components/sessions/Signup";
 
 function App() {
 
-  const [user, setUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     fetch('/me').then((response) => {
       if (response.ok) {
-        response.json().then((user) => setUser(user));
+        response.json().then((user) => setCurrentUser(user));
       }
     });
   }, []);
@@ -22,8 +22,8 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login onLogin={setUser} />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login setCurrentUser={setCurrentUser} />} />
+        <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} />} />
       </Routes>
     </BrowserRouter>
   );

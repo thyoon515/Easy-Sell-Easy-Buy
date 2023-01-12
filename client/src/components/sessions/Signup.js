@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -13,7 +13,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
-const Signup = ({ setCurrentUser }) => {
+const Signup = ({ setCurrentUser, setUserLoggedIn }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -40,6 +40,7 @@ const Signup = ({ setCurrentUser }) => {
       if(res.ok){
           res.json().then(user => {
             setCurrentUser(user)
+            setUserLoggedIn(true)
             navigate('/')
           })
       }else{
@@ -103,6 +104,14 @@ const Signup = ({ setCurrentUser }) => {
               />
             </Grid>
           </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Sign Up
+          </Button>
           <div>
            {errors && (
            <ul style={{ color: "red" }}>
@@ -112,14 +121,6 @@ const Signup = ({ setCurrentUser }) => {
            </ul>
            )}
           </div>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign Up
-          </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="/login" variant="body2">

@@ -6,11 +6,38 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import { useTheme } from '@mui/material/styles';
+//import { useTheme } from '@mui/material/styles';
 
-const NavBar = () => {
+const NavBar = ({ setCurrentUser, setUserLoggedIn, userLoggedIn }) => {
   
-  const theme = useTheme();
+  //const theme = useTheme();
+
+  const handleLogout = () => {
+    fetch('/logout', {
+      method: "DELETE",
+    }).then(() => {
+      setCurrentUser('') 
+      setUserLoggedIn(false)
+    })
+  }
+
+  const loggedInLinks = () => {
+    return(
+      <>
+        <Button color="inherit" component={ Link } to="/">Home</Button>
+        <Button color="inherit" onClick={ handleLogout }>Logout</Button>
+      </>
+    )
+  }
+
+  const loggedOutLinks = () => {
+    return(
+    <>
+      <Button color="inherit" component={ Link } to="/">Home</Button>
+      <Button color="inherit" component={ Link } to="/login">Login</Button>
+    </>
+    )
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }} >
@@ -27,9 +54,7 @@ const NavBar = () => {
           <Typography color="#fafafa" variant="h6" component="div" sx={{ flexGrow: 1 }}>
             ESEB
           </Typography>
-          <Button color="inherit" component={ Link } to="/">Home</Button>
-          <Button color="inherit" component={ Link } to="/login">Login</Button>
-          <Button color="inherit" component={ Link } to="/signup">Signup</Button>
+          { userLoggedIn ? loggedInLinks() : loggedOutLinks() }
         </Toolbar>
       </AppBar>
     </Box>

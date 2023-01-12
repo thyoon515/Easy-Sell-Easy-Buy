@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const Login = ({ setCurrentUser }) => {
+const Login = ({ setCurrentUser, setUserLoggedIn }) => {
 
   const theme = createTheme();
 
@@ -38,11 +38,12 @@ const Login = ({ setCurrentUser }) => {
         if(res.ok){
             res.json().then((user) => {
               setCurrentUser(user)
+              setUserLoggedIn(true)
               navigate('/')
             })
         }else{
             res.json().then((e) => {
-              setErrors(e.errors)
+              setErrors(e.error)
             })
         }
       })
@@ -98,6 +99,14 @@ const Login = ({ setCurrentUser }) => {
               value={password}
               onChange={handlePasswordChange}
             />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Login
+            </Button>
             <div>
               {errors && (
               <ul style={{ color: "red" }}>
@@ -107,14 +116,6 @@ const Login = ({ setCurrentUser }) => {
               </ul>
               )}
             </div>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Login
-            </Button>
             <Grid container>
               <Grid item>
                 <Link href="/signup" variant="body2">

@@ -7,23 +7,24 @@ import Signup from "./components/sessions/Signup";
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState('');
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   useEffect(() => {
     fetch('/me').then((response) => {
       if (response.ok) {
-        response.json().then((user) => setCurrentUser(user));
+        response.json().then((user) => {setCurrentUser(user) && setUserLoggedIn(true)});
       }
     });
   }, []);
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} setCurrentUser={setCurrentUser} />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login setCurrentUser={setCurrentUser} />} />
-        <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} />} />
+        <Route path="/" element={<HomePage currentUser={currentUser} />} />
+        <Route path="/login" element={<Login setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
+        <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
       </Routes>
     </BrowserRouter>
   );

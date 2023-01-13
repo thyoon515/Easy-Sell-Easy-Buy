@@ -4,11 +4,13 @@ import NavBar from './components/navigation/NavBar';
 import HomePage from "./components/static/HomePage";
 import Login from "./components/sessions/Login";
 import Signup from "./components/sessions/Signup";
+import Items from './components/Items';
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState('');
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [items, setItems] = useState([])
 
   useEffect(() => {
     fetch('/me').then((response) => {
@@ -18,6 +20,12 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    fetch('/items')
+      .then((r) => r.json())
+      .then((itemData) => setItems(itemData))
+  },[])
+
   return (
     <BrowserRouter>
       <NavBar userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} setCurrentUser={setCurrentUser} />
@@ -25,6 +33,7 @@ function App() {
         <Route path="/" element={<HomePage currentUser={currentUser} />} />
         <Route path="/login" element={<Login setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
+        <Route path="/item" element={<Items items={items} />} />
       </Routes>
     </BrowserRouter>
   );

@@ -15,7 +15,10 @@ function App() {
   useEffect(() => {
     fetch('/me').then((response) => {
       if (response.ok) {
-        response.json().then((user) => {setCurrentUser(user) && setUserLoggedIn(true)});
+        response.json().then((user) => {
+          setCurrentUser(user)
+          setUserLoggedIn(true)
+        });
       }
     });
   }, []);

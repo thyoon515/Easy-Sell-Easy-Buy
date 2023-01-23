@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :transactions
   resources :items
   post "/login", to: "sessions#create"
   get "/me", to: "users#show"

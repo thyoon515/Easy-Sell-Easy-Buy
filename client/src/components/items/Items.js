@@ -41,6 +41,7 @@ const Items = ({ items }) => {
                   <CardActions>
                     <Button size="small">Buy</Button>
                     <Button size="small">Edit</Button>
+                    <Button size="small">Delete</Button>
                   </CardActions>
                 </Card>
               </Grid>

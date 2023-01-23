@@ -15,6 +15,7 @@ const AddItem = ({ handleAddItem }) => {
       price: "",
       description: ""
     })
+    const [errors, setErrors] = useState([])
   
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -30,13 +31,24 @@ const AddItem = ({ handleAddItem }) => {
           description: addItemFormData.description
         }),
       })
-        .then((r) => r.json())
-        .then((postNewItem) =>{
+        .then((r) => {
+          if(r.ok){
+            r.json().then((postNewItem) =>{
           handleAddItem(postNewItem)
-          navigate('/items')
-        })
-      setAddItemFormData({})
-      
+          navigate('/item')
+          })
+        }else{
+            r.json().then((e) => {
+              setErrors(e.errors)
+            })
+        }
+      })
+      setAddItemFormData({
+        title: "",
+        image: "",
+        price: "",
+        description: ""
+      })
     }
   
     const handleChange = (e) => {
@@ -50,10 +62,12 @@ const AddItem = ({ handleAddItem }) => {
     return ( 
       <form onSubmit={handleSubmit}>
         <Container maxWidth="sm">
-          <Box sx={{ bgcolor: '#cfe8fc', height: '50vh', m: 4}}>
+          <Box sx={{ m: 4}}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <TextField 
+                <TextField
+                  fullWidth
+                  multiline 
                   id="title" 
                   onChange={handleChange} 
                   value={addItemFormData.title} 
@@ -61,14 +75,16 @@ const AddItem = ({ handleAddItem }) => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField 
+                <TextField
+                  fullWidth
+                  multiline 
                   id="image" 
                   onChange={handleChange} 
                   value={addItemFormData.image} 
                   label="Image URL" 
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12}>
                 <TextField 
                   id="price" 
                   onChange={handleChange} 
@@ -77,7 +93,9 @@ const AddItem = ({ handleAddItem }) => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField 
+                <TextField
+                  fullWidth
+                  multiline 
                   id="description" 
                   onChange={handleChange} 
                   value={addItemFormData.description} 
@@ -86,6 +104,15 @@ const AddItem = ({ handleAddItem }) => {
               </Grid>
               <Grid item xs={12}>
                 <Button type="submit" variant="contained">Add Item</Button>
+                <div>
+                  {errors && (
+                  <ul style={{ color: "red" }}>
+                    {errors.map((error) => (
+                      <li key={error}>{error}</li>
+                    ))}
+                  </ul>
+                  )}
+                </div>
               </Grid>
             </Grid>
           </Box>

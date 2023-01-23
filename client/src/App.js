@@ -4,7 +4,8 @@ import NavBar from './components/navigation/NavBar';
 import HomePage from "./components/static/HomePage";
 import Login from "./components/sessions/Login";
 import Signup from "./components/sessions/Signup";
-import Items from './components/Items';
+import Items from './components/items/Items';
+import AddItem from './components/items/AddItem';
 
 function App() {
 
@@ -29,6 +30,10 @@ function App() {
       .then((itemData) => setItems(itemData))
   },[])
 
+  const handleAddItem = (postNewItem) => {
+    setItems([...items, postNewItem])
+  }
+
   return (
     <BrowserRouter>
       <NavBar userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} setCurrentUser={setCurrentUser} />
@@ -37,6 +42,7 @@ function App() {
         <Route path="/login" element={<Login setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/item" element={<Items items={items} />} />
+        <Route path='/addItem' element={<AddItem handleAddItem={handleAddItem} />} />
       </Routes>
     </BrowserRouter>
   );

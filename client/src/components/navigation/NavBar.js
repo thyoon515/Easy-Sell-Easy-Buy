@@ -6,11 +6,13 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-//import { useTheme } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
+
 
 const NavBar = ({ setCurrentUser, setUserLoggedIn, userLoggedIn }) => {
   
-  //const theme = useTheme();
+  
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     fetch('/logout', {
@@ -18,6 +20,7 @@ const NavBar = ({ setCurrentUser, setUserLoggedIn, userLoggedIn }) => {
     }).then(() => {
       setCurrentUser('') 
       setUserLoggedIn(false)
+      navigate('/')
     })
   }
 
@@ -26,6 +29,7 @@ const NavBar = ({ setCurrentUser, setUserLoggedIn, userLoggedIn }) => {
       <>
         <Button color="inherit" component={ Link } to="/">Home</Button>
         <Button color="inherit" component={ Link } to="/item">Items</Button>
+        <Button color="inherit" component={ Link } to="/addItem">Post</Button>
         <Button color="inherit" onClick={ handleLogout }>Logout</Button>
       </>
     )

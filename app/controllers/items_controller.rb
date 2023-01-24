@@ -11,6 +11,16 @@ class ItemsController < ApplicationController
         render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
     end
 
+    def destroy
+        item = Item.find_by(id: params[:id])
+        if item
+            item.destroy
+            head :no_content
+        else
+            render json: { error: "Item not found" }, status: :not_found
+        end
+    end
+
     private
 
     def item_params

@@ -27,10 +27,10 @@ const NavBar = ({ setCurrentUser, setUserLoggedIn, userLoggedIn }) => {
   const loggedInLinks = () => {
     return(
       <>
-        <Button color="inherit" component={ Link } to="/">Home</Button>
-        <Button color="inherit" component={ Link } to="/item">Items</Button>
-        <Button color="inherit" component={ Link } to="/addItem">Post</Button>
-        <Button color="inherit" onClick={ handleLogout }>Logout</Button>
+        <Button color="secondary" component={ Link } to="/">Home</Button>
+        <Button color="secondary" component={ Link } to="/item">Items</Button>
+        <Button color="secondary" component={ Link } to="/addItem">Post</Button>
+        <Button color="secondary" onClick={ handleLogout }>Logout</Button>
       </>
     )
   }
@@ -38,7 +38,7 @@ const NavBar = ({ setCurrentUser, setUserLoggedIn, userLoggedIn }) => {
   const loggedOutLinks = () => {
     return(
     <>
-      <Button color="inherit" component={ Link } to="/login">Login</Button>
+      <Button color="secondary" component={ Link } to="/login">Login</Button>
     </>
     )
   }
@@ -55,7 +55,7 @@ const NavBar = ({ setCurrentUser, setUserLoggedIn, userLoggedIn }) => {
             sx={{ mr: 2 }}
           >
           </IconButton>
-          <Typography color="#fafafa" variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography fontWeight='900' fontStyle='italic' color="#fafafa" variant="h6" component="div" sx={{ flexGrow: 1 }}>
             ESEB
           </Typography>
           { userLoggedIn ? loggedInLinks() : loggedOutLinks() }

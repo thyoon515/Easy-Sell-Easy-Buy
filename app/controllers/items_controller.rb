@@ -5,6 +5,11 @@ class ItemsController < ApplicationController
         render json: Item.all
     end
 
+    def show
+        item = find_item
+        render json: item
+    end
+
     def create
         item = Item.create!(item_params)
         render json: item, status: :created

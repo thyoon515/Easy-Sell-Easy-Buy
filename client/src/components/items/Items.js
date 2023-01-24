@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid';
 import CardMedia from '@mui/material/CardMedia';
 import Container from '@mui/material/Container';
 
-const Items = ({ items, removeItemFromItems }) => {
+const Items = ({ items, removeItemFromItems, setEditItem }) => {
 
   const [errors, setErrors] = useState([])
 
@@ -20,48 +20,60 @@ const Items = ({ items, removeItemFromItems }) => {
       })
       .then(res => {
         if(res.ok){
-            res.json().then((deletedItem) => {
-              removeItemFromItems(deletedItem)
+          res.json().then((deletedItem) => {
+            removeItemFromItems(deletedItem)
           })
-        } else {
+        }else{
           res.json().then((e) => {
             setErrors(e.error)
           })
         }
       })
     }
+
+    const handleClickEditItem = () => {
+      setEditItem(item)
+    }
     
+    const handleEditSubmit = (e) => {
+      e.preventDefault()
+      console.log(e)
+    }
+
     return (
-    <Grid item key={item.id} xs={12} sm={6} md={4}>
-      <Card
-        sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-        >
-          <CardMedia
-            component="img"
-            sx={{
-              pt: '56.25%',
-            }}
-            image={item.image}
-            alt="item_image"
-          />
-        <CardContent sx={{ flexGrow: 1 }}>
-          <Typography gutterBottom variant="h5" component="h2">
-            {item.title}
-          </Typography>
-          <Typography>
-            {item.price}
-          </Typography>
-          <Typography>
-            {item.description}
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Buy</Button>
-          <Button size="small">Edit</Button>
-          <Button size="small" onClick={handleDeleteItem}>Delete</Button>
-        </CardActions>
-      </Card>
-    </Grid>
+      <Grid item key={item.id} xs={12} sm={6} md={4}>
+        <form onSubmit={handleEditSubmit}>
+          <Card
+          sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+          >
+              <CardMedia
+                component="img"
+                sx={{
+                  pt: '56.25%',
+                }}
+                image={item.image}
+                alt="item_image"
+              />
+            <CardContent sx={{ flexGrow: 1 }}>
+              <Typography gutterBottom variant="h5" component="h2">
+                {item.title}
+              </Typography>
+              <Typography>
+                {item.price}
+              </Typography>
+              <Typography>
+                {item.description}
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small">Buy</Button>
+              <Button size="small" type="submit" onClick={handleClickEditItem}>Edit</Button>
+              <Button size="small" onClick={handleDeleteItem}>Delete</Button>
+            </CardActions>
+          </Card>
+        </form>
+        
+      </Grid>
     )
   })
 

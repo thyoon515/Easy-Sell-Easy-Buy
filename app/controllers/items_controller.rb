@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
         item = Item.find_by(id: params[:id])
         if item
             item.destroy
-            head :no_content
+            render json: item
         else
             render json: { error: "Item not found" }, status: :not_found
         end

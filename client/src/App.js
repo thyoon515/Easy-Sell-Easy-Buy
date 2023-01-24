@@ -6,12 +6,14 @@ import Login from "./components/sessions/Login";
 import Signup from "./components/sessions/Signup";
 import Items from './components/items/Items';
 import AddItem from './components/items/AddItem';
+import EditItem from './components/items/EditItem';
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState('');
   const [userLoggedIn, setUserLoggedIn] = useState(false);
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState([]);
+  const [editItem, setEditItem] = useState([]);
 
   useEffect(() => {
     fetch('/me').then((response) => {
@@ -46,8 +48,9 @@ function App() {
         <Route path="/" element={<HomePage currentUser={currentUser} />} />
         <Route path="/login" element={<Login setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
-        <Route path="/item" element={<Items items={items} removeItemFromItems={removeItemFromItems} />} />
+        <Route path="/item" element={<Items items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
         <Route path='/addItem' element={<AddItem handleAddItem={handleAddItem} />} />
+        <Route path='/editItem' element={<EditItem editItem={editItem} />} />
       </Routes>
     </BrowserRouter>
   );

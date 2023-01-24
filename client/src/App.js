@@ -15,6 +15,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [editItem, setEditItem] = useState([]);
 
+
   useEffect(() => {
     fetch('/me').then((response) => {
       if (response.ok) {
@@ -41,6 +42,17 @@ function App() {
     setItems(updatedListOfItems)
   }
 
+  const handleEditedItem = (editedItem) => {
+    const updatedItem = items.map(item => {
+      if(item.id === editedItem.id){
+        return editedItem;
+      } else {
+        return item;
+      }
+    })
+    setItems(updatedItem)
+  }
+
   return (
     <BrowserRouter>
       <NavBar userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} setCurrentUser={setCurrentUser} />
@@ -50,7 +62,7 @@ function App() {
         <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/item" element={<Items items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
         <Route path='/addItem' element={<AddItem handleAddItem={handleAddItem} />} />
-        <Route path='/editItem' element={<EditItem editItem={editItem} />} />
+        <Route path='/editItem' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} />} />
       </Routes>
     </BrowserRouter>
   );

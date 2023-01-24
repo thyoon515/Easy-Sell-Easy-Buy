@@ -7,8 +7,11 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import CardMedia from '@mui/material/CardMedia';
 import Container from '@mui/material/Container';
+import { useNavigate } from 'react-router-dom';
 
 const Items = ({ items, removeItemFromItems, setEditItem }) => {
+
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState([])
 
@@ -37,7 +40,7 @@ const Items = ({ items, removeItemFromItems, setEditItem }) => {
     
     const handleEditSubmit = (e) => {
       e.preventDefault()
-      console.log(e)
+      navigate('/editItem')
     }
 
     return (

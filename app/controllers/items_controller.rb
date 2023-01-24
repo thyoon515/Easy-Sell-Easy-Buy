@@ -21,6 +21,16 @@ class ItemsController < ApplicationController
         end
     end
 
+    def update
+        item = Item.find_by(id: params[:id])
+        if item
+            item.update(item_params)
+            render json: item, status: :accepted
+        else
+            render json: { error: "Item not found" }, status: :not_found
+        end
+    end
+
     private
 
     def item_params

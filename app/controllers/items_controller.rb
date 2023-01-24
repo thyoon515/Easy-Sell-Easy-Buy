@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def index
         render json: Item.all
@@ -12,29 +13,29 @@ class ItemsController < ApplicationController
     end
 
     def destroy
-        item = Item.find_by(id: params[:id])
-        if item
-            item.destroy
-            render json: item
-        else
-            render json: { error: "Item not found" }, status: :not_found
-        end
+        item = find_item
+        item.destroy
+        render json: item
     end
 
     def update
-        item = Item.find_by(id: params[:id])
-        if item
-            item.update(item_params)
-            render json: item, status: :accepted
-        else
-            render json: { error: "Item not found" }, status: :not_found
-        end
+        item = find_item
+        item.update(item_params)
+        render json: item, status: :accepted
     end
 
     private
 
+    def find_item
+        Item.find_by(id: params[:id])
+    end
+
     def item_params
         params.permit(:title, :image, :price, :description)
+    end
+
+    def render_not_found_response
+        render json: { error: "Item not found" }, status: :not_found
     end
 
 end

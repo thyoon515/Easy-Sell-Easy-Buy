@@ -35,7 +35,7 @@ const EditItem = ({ editItem, handleEditedItem }) => {
           if(r.ok){
             r.json().then((editedItem) =>{
                 handleEditedItem(editedItem)
-                navigate('/item')
+                navigate('/items')
             })
         }else{
             r.json().then((e) => {

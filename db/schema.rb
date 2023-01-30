@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_23_183106) do
+ActiveRecord::Schema.define(version: 2023_01_30_185145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,11 @@ ActiveRecord::Schema.define(version: 2023_01_23_183106) do
     t.string "post_date"
     t.boolean "purchase"
     t.boolean "sale"
-    t.integer "user_id"
     t.integer "item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "seller_id"
+    t.integer "buyer_id"
   end
 
   create_table "users", force: :cascade do |t|

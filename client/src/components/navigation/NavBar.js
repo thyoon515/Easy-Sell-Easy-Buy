@@ -28,7 +28,7 @@ const NavBar = ({ setCurrentUser, setUserLoggedIn, userLoggedIn }) => {
     return(
       <>
         <Button color="secondary" component={ Link } to="/">Home</Button>
-        <Button color="secondary" component={ Link } to="/item">Items</Button>
+        <Button color="secondary" component={ Link } to="/items">Items</Button>
         <Button color="secondary" component={ Link } to="/addItem">Post</Button>
         <Button color="secondary" onClick={ handleLogout }>Logout</Button>
       </>

@@ -35,7 +35,7 @@ const AddItem = ({ handleAddItem }) => {
           if(r.ok){
             r.json().then((postNewItem) =>{
           handleAddItem(postNewItem)
-          navigate('/item')
+          navigate('/items')
           })
         }else{
             r.json().then((e) => {

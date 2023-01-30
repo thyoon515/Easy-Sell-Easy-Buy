@@ -60,7 +60,7 @@ function App() {
         <Route path="/" element={<HomePage currentUser={currentUser} />} />
         <Route path="/login" element={<Login setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
-        <Route path="/item" element={<Items items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
+        <Route path="/items" element={<Items items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
         <Route path='/addItem' element={<AddItem handleAddItem={handleAddItem} />} />
         <Route path='/editItem' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} />} />
       </Routes>

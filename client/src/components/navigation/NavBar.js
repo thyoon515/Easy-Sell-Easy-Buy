@@ -30,6 +30,7 @@ const NavBar = ({ setCurrentUser, setUserLoggedIn, userLoggedIn }) => {
         <Button color="secondary" component={ Link } to="/">Home</Button>
         <Button color="secondary" component={ Link } to="/items">Items</Button>
         <Button color="secondary" component={ Link } to="/addItem">Post</Button>
+        <Button color="secondary" component={ Link } to="/transactions">Transactions</Button>
         <Button color="secondary" onClick={ handleLogout }>Logout</Button>
       </>
     )

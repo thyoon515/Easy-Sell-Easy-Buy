@@ -7,6 +7,7 @@ import Signup from "./components/sessions/Signup";
 import Items from './components/items/Items';
 import AddItem from './components/items/AddItem';
 import EditItem from './components/items/EditItem';
+import Transactions from './components/transactions/Transactions';
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [items, setItems] = useState([]);
   const [editItem, setEditItem] = useState([]);
-
+  const [userTransactions, setUserTransactions] = useState([]);
 
   useEffect(() => {
     fetch('/me').then((response) => {
@@ -32,6 +33,12 @@ function App() {
       .then((r) => r.json())
       .then((itemData) => setItems(itemData))
   },[])
+
+  useEffect(() => {
+    fetch(`/users/${currentUser.id}`)
+      .then((r) => r.json())
+      .then(userInfo => setUserTransactions(userInfo))
+  },[currentUser.id])
 
   const handleAddItem = (postNewItem) => {
     setItems([...items, postNewItem])
@@ -53,6 +60,8 @@ function App() {
     setItems(updatedItem)
   }
 
+  console.log(userTransactions)
+
   return (
     <BrowserRouter>
       <NavBar userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} setCurrentUser={setCurrentUser} />
@@ -63,6 +72,7 @@ function App() {
         <Route path="/items" element={<Items items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
         <Route path='/addItem' element={<AddItem handleAddItem={handleAddItem} />} />
         <Route path='/editItem' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} />} />
+        <Route path='/transactions' element={<Transactions userTransactions={userTransactions} setUserTransactions={setUserTransactions}/>} />
       </Routes>
     </BrowserRouter>
   );

@@ -60,7 +60,7 @@ function App() {
     setItems(updatedItem)
   }
 
-  console.log(userTransactions)
+  console.log(userTransactions.transactions)
 
   return (
     <BrowserRouter>
@@ -72,7 +72,7 @@ function App() {
         <Route path="/items" element={<Items items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
         <Route path='/addItem' element={<AddItem handleAddItem={handleAddItem} />} />
         <Route path='/editItem' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} />} />
-        <Route path='/transactions' element={<Transactions userTransactions={userTransactions} setUserTransactions={setUserTransactions}/>} />
+        <Route path='/transactions' element={<Transactions userTransactions={userTransactions} setUserTransactions={setUserTransactions} items={items} />} />
       </Routes>
     </BrowserRouter>
   );

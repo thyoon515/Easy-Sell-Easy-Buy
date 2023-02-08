@@ -15,7 +15,6 @@ function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [items, setItems] = useState([]);
   const [editItem, setEditItem] = useState([]);
-  const [userTransactions, setUserTransactions] = useState([]);
 
   useEffect(() => {
     fetch('/me').then((response) => {
@@ -33,12 +32,6 @@ function App() {
       .then((r) => r.json())
       .then((itemData) => setItems(itemData))
   },[])
-
-  useEffect(() => {
-    fetch(`/users/${currentUser.id}`)
-      .then((r) => r.json())
-      .then(userInfo => setUserTransactions(userInfo))
-  },[currentUser.id])
 
   const handleAddItem = (postNewItem) => {
     setItems([...items, postNewItem])
@@ -60,7 +53,7 @@ function App() {
     setItems(updatedItem)
   }
 
-  console.log(userTransactions.transactions)
+  console.log(items)
 
   return (
     <BrowserRouter>
@@ -72,7 +65,7 @@ function App() {
         <Route path="/items" element={<Items items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
         <Route path='/addItem' element={<AddItem handleAddItem={handleAddItem} />} />
         <Route path='/editItem' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} />} />
-        <Route path='/transactions' element={<Transactions userTransactions={userTransactions} setUserTransactions={setUserTransactions} items={items} />} />
+        <Route path='/transactions' element={<Transactions items={items} />} />
       </Routes>
     </BrowserRouter>
   );

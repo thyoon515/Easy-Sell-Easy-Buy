@@ -69,7 +69,6 @@ const Items = ({ items, removeItemFromItems, setEditItem }) => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">Buy</Button>
               <Button size="small" type="submit" onClick={handleClickEditItem}>Edit</Button>
               <Button size="small" onClick={handleDeleteItem}>Delete</Button>
             </CardActions>

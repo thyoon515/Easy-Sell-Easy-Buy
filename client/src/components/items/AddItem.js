@@ -5,8 +5,12 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
-const AddItem = ({ handleAddItem }) => {
+const AddItem = ({ handleAddItem, locations, currentUser }) => {
     const navigate = useNavigate();
 
     const [addItemFormData, setAddItemFormData] = useState({
@@ -15,6 +19,7 @@ const AddItem = ({ handleAddItem }) => {
       price: "",
       description: ""
     })
+    const [selectLocation, setSelectLocation] = useState('')
     const [errors, setErrors] = useState([])
   
     const handleSubmit = (e) => {
@@ -28,14 +33,16 @@ const AddItem = ({ handleAddItem }) => {
           title: addItemFormData.title,
           image: addItemFormData.image,
           price: addItemFormData.price,
-          description: addItemFormData.description
+          description: addItemFormData.description,
+          user_id: currentUser.id,
+          location_id: selectLocation
         }),
       })
         .then((r) => {
           if(r.ok){
             r.json().then((postNewItem) =>{
-          handleAddItem(postNewItem)
-          navigate('/items')
+              handleAddItem(postNewItem)
+              navigate('/items')
           })
         }else{
             r.json().then((e) => {
@@ -58,7 +65,17 @@ const AddItem = ({ handleAddItem }) => {
         [key]: e.target.value
       })
     }
-  
+
+    const handleChangeLocation = (e) => {
+      setSelectLocation(e.target.value)
+    }
+
+    const displayLocation = locations.map((location) => {
+      return (
+        <MenuItem key={location.id} value={location.id}>{location.nyc_borough_name}</MenuItem>
+      )
+    })
+
     return ( 
       <form onSubmit={handleSubmit}>
         <Container maxWidth="sm">
@@ -101,6 +118,18 @@ const AddItem = ({ handleAddItem }) => {
                   value={addItemFormData.description} 
                   label="Description" 
                 />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <InputLabel>Select NYC Borough</InputLabel>
+                  <Select
+                    id="selectLocation"
+                    value={selectLocation}
+                    label="Select NYC Borough"
+                    onChange={handleChangeLocation} >
+                      {displayLocation}
+                  </Select>
+                </FormControl>
               </Grid>
               <Grid item xs={12}>
                 <Button type="submit" variant="contained">Add Item</Button>

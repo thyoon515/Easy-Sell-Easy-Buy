@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
     end
 
     def item_params
-        params.permit(:title, :image, :price, :description)
+        params.permit(:title, :image, :price, :description, :user_id, :location_id)
     end
 
     def render_not_found_response

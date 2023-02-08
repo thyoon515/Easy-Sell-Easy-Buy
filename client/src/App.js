@@ -15,6 +15,13 @@ function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [items, setItems] = useState([]);
   const [editItem, setEditItem] = useState([]);
+  const [locations, setLocations] = useState([]);
+
+  useEffect(() => {
+    fetch('/locations')
+      .then(r => r.json())
+      .then(locationData => setLocations(locationData))
+  }, [])
 
   useEffect(() => {
     fetch('/me').then((response) => {
@@ -61,7 +68,7 @@ function App() {
         <Route path="/login" element={<Login setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/items" element={<Items items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
-        <Route path='/addItem' element={<AddItem handleAddItem={handleAddItem} />} />
+        <Route path='/addItem' element={<AddItem handleAddItem={handleAddItem} locations={locations} currentUser={currentUser} />} />
         <Route path='/editItem' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} />} />
         <Route path='/transactions' element={<Transactions items={items} />} />
       </Routes>

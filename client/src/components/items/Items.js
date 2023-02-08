@@ -58,10 +58,13 @@ const Items = ({ items, removeItemFromItems, setEditItem }) => {
                 alt="item_image"
               />
             <CardContent sx={{ flexGrow: 1 }}>
-              <Typography gutterBottom variant="h5" component="h2">
+              <Typography gutterBottom variant="h4" component="h2">
                 {item.title}
               </Typography>
-              <Typography>
+              <Typography gutterBottom variant="h6" component="h2">
+                Available in {item.location.nyc_borough_name}
+              </Typography>
+              <Typography gutterBottom>
                 {item.price}
               </Typography>
               <Typography>

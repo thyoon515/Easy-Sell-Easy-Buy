@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
         else
             items = Item.all
         end
-          render json: items, include: :user
+          render json: items, include: :location
     end
 
     def show

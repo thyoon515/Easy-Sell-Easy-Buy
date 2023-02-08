@@ -53,8 +53,6 @@ function App() {
     setItems(updatedItem)
   }
 
-  console.log(items)
-
   return (
     <BrowserRouter>
       <NavBar userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} setCurrentUser={setCurrentUser} />

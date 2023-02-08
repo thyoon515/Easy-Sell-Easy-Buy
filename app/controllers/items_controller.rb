@@ -2,7 +2,13 @@ class ItemsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def index
-        render json: Item.all
+        if params[:user_id]
+            user = User.find(params[:user_id])
+            items = user.items
+        else
+            items = Item.all
+        end
+          render json: items, include: :user
     end
 
     def show
@@ -32,7 +38,7 @@ class ItemsController < ApplicationController
     private
 
     def find_item
-        Item.find_by(id: params[:id])
+        Item.find(params[:id])
     end
 
     def item_params

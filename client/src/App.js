@@ -7,7 +7,7 @@ import Signup from "./components/sessions/Signup";
 import Items from './components/items/Items';
 import AddItem from './components/items/AddItem';
 import EditItem from './components/items/EditItem';
-import Transactions from './components/transactions/Transactions';
+import FilterItems from './components/items/FilterItems';
 
 function App() {
 
@@ -22,8 +22,6 @@ function App() {
       .then(r => r.json())
       .then(locationData => setLocations(locationData))
   }, [])
-
-  console.log(locations)
 
   useEffect(() => {
     fetch('/me').then((response) => {
@@ -72,7 +70,7 @@ function App() {
         <Route path="/items" element={<Items items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
         <Route path='/addItem' element={<AddItem handleAddItem={handleAddItem} locations={locations} currentUser={currentUser} />} />
         <Route path='/editItem' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} />} />
-        <Route path='/transactions' element={<Transactions items={items} />} />
+        <Route path='/filterItems' element={<FilterItems items={items} />} />
       </Routes>
     </BrowserRouter>
   );

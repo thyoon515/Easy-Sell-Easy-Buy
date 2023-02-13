@@ -17,6 +17,7 @@ const Transactions = ({ items }) => {
   const [transactionType, setTransactionType] = useState('')
 
   const handleChangeTransactionType = (e) => {
+    console.log(e.target.value)
     setTransactionType(e.target.value)
   }
 
@@ -66,9 +67,9 @@ const Transactions = ({ items }) => {
             value={transactionType}
             onChange={handleChangeTransactionType}
           >
-            <MenuItem value='All' >All</MenuItem>
-            <MenuItem value='Sale' >Sale</MenuItem>
-            <MenuItem value='Purchase' >Purchase</MenuItem>
+            <MenuItem value={1} >All</MenuItem>
+            <MenuItem value={2} >Sale</MenuItem>
+            <MenuItem value={3} >Purchase</MenuItem>
           </Select>
             <Button type='submit' variant="contained" onClick={handleClickTransactionSearch}>Search</Button>
         </FormControl>

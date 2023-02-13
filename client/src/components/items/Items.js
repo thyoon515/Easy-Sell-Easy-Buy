@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import CardMedia from '@mui/material/CardMedia';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
+import FilterItems from './FilterItems';
 
 const Items = ({ items, removeItemFromItems, setEditItem }) => {
 
@@ -67,8 +68,11 @@ const Items = ({ items, removeItemFromItems, setEditItem }) => {
               <Typography gutterBottom>
                 {item.price}
               </Typography>
-              <Typography>
+              <Typography gutterBottom>
                 {item.description}
+              </Typography>
+              <Typography gutterBottom>
+                Posted by 
               </Typography>
             </CardContent>
             <CardActions>
@@ -86,6 +90,9 @@ const Items = ({ items, removeItemFromItems, setEditItem }) => {
     <>
     <div>
        <Container sx={{ py: 4 }} maxWidth="md">
+          <Grid container spacing={4}>
+            <FilterItems />
+          </Grid>
           <Grid container spacing={4}>
             {displayItems}
           </Grid>

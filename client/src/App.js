@@ -23,6 +23,8 @@ function App() {
       .then(locationData => setLocations(locationData))
   }, [])
 
+  console.log(locations)
+
   useEffect(() => {
     fetch('/me').then((response) => {
       if (response.ok) {

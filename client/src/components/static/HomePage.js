@@ -1,16 +1,18 @@
 import React from 'react'
-import gif from '/home/thyoon515/Development/code/phase-4/easy-sell-easy-buy/client/src/WelccomeToESEBgif.gif'
+import welcomeGif from '/home/thyoon515/Development/code/phase-4/easy-sell-easy-buy/client/src/WelccomeToESEBgif.gif'
+import loggedInGif from '/home/thyoon515/Development/code/phase-4/easy-sell-easy-buy/client/src/ClickLinksgif.gif'
 
 const HomePage = ({ currentUser }) => {
 
   if (currentUser) {
     return <div align='center' >
               <h1>Welcome, {currentUser.username}!</h1>
+              <img src={loggedInGif} alt='Click Links Gif' />
            </div>
   } else {
     return <div> 
               <img 
-                src={gif} 
+                src={welcomeGif} 
                 alt='Welcome To ESEB' 
                 style={{
                   position: 'absolute',

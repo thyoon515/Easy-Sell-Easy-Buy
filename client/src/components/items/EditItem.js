@@ -5,8 +5,12 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
 
-const EditItem = ({ editItem, handleEditedItem }) => {
+const EditItem = ({ editItem, handleEditedItem, locations }) => {
     const navigate = useNavigate();
 
     const [editItemFormData, setEditItemFormData] = useState({
@@ -16,6 +20,7 @@ const EditItem = ({ editItem, handleEditedItem }) => {
       description: editItem.description
     })
     const [errors, setErrors] = useState([])
+    const [editSelectLocation, setEditSelectLocation] = useState(editItem.location_id)
   
     const handleSubmitEdit = (e) => {
       e.preventDefault();
@@ -28,7 +33,8 @@ const EditItem = ({ editItem, handleEditedItem }) => {
           title: editItemFormData.title,
           image: editItemFormData.image,
           price: editItemFormData.price,
-          description: editItemFormData.description
+          description: editItemFormData.description,
+          location_id: editSelectLocation
         }),
       })
         .then((r) => {
@@ -58,6 +64,16 @@ const EditItem = ({ editItem, handleEditedItem }) => {
         [key]: e.target.value
       })
     }
+
+    const handleChangeLocation = (e) => {
+      setEditSelectLocation(e.target.value)
+    }
+
+    const displayLocation = locations.map((location) => {
+      return (
+        <MenuItem key={location.id} value={location.id}>{location.nyc_borough_name}</MenuItem>
+      )
+    })
   
     return ( 
       <form onSubmit={handleSubmitEdit}>
@@ -101,6 +117,18 @@ const EditItem = ({ editItem, handleEditedItem }) => {
                   value={editItemFormData.description} 
                   label="Description" 
                 />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <InputLabel>Select NYC Borough</InputLabel>
+                  <Select
+                    id="selectLocation"
+                    value={editSelectLocation}
+                    label="Select NYC Borough"
+                    onChange={handleChangeLocation} >
+                      {displayLocation}
+                  </Select>
+                </FormControl>
               </Grid>
               <Grid item xs={12}>
                 <Button type="submit" variant="contained">Edit Item</Button>

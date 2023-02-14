@@ -76,7 +76,7 @@ function App() {
         <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/items" element={<Items items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} userInfo={userInfo} />} />
         <Route path='/addItem' element={<AddItem handleAddItem={handleAddItem} locations={locations} currentUser={currentUser} />} />
-        <Route path='/editItem' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} />} />
+        <Route path='/editItem' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} locations={locations} />} />
         <Route path='/filterItems' element={<FilterItems items={items} />} />
       </Routes>
     </BrowserRouter>

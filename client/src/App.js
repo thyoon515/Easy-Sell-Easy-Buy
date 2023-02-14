@@ -16,6 +16,13 @@ function App() {
   const [items, setItems] = useState([]);
   const [editItem, setEditItem] = useState([]);
   const [locations, setLocations] = useState([]);
+  const [userInfo, setUserInfo] = useState([]);
+
+  useEffect(() => {
+    fetch('/users')
+      .then(r => r.json())
+      .then(userData => setUserInfo(userData))
+  },[])
 
   useEffect(() => {
     fetch('/locations')
@@ -67,7 +74,7 @@ function App() {
         <Route path="/" element={<HomePage currentUser={currentUser} />} />
         <Route path="/login" element={<Login setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
-        <Route path="/items" element={<Items items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
+        <Route path="/items" element={<Items items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} userInfo={userInfo} />} />
         <Route path='/addItem' element={<AddItem handleAddItem={handleAddItem} locations={locations} currentUser={currentUser} />} />
         <Route path='/editItem' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} />} />
         <Route path='/filterItems' element={<FilterItems items={items} />} />

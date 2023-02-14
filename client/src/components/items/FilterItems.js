@@ -75,14 +75,13 @@ const FilterItems = ({ items }) => {
               <MenuItem value={5} >Staten Island</MenuItem>
             </Select>
           </FormControl>
-          <Container sx={{ py: 4 }} maxWidth="md">
-            <Grid container spacing={4}>
+          <Container>
+            <Grid>
               {displayItems}
             </Grid>
           </Container>
         </Box>
       </Container>
-      
     )
 }
 

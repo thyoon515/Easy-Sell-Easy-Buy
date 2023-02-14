@@ -9,7 +9,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
 
-const Items = ({ items, removeItemFromItems, setEditItem }) => {
+const Items = ({ items, removeItemFromItems, setEditItem, userInfo }) => {
 
   const navigate = useNavigate();
 
@@ -33,6 +33,22 @@ const Items = ({ items, removeItemFromItems, setEditItem }) => {
         }
       })
     }
+
+    const displayUsername = userInfo.map((user) => {
+      if(user.id === item.user_id){
+        return user.username
+      } else {
+        return null
+      }
+    })
+
+    const displayUserEmail = userInfo.map((user) => {
+      if(user.id === item.user_id){
+        return user.email
+      } else {
+        return null
+      }
+    })
 
     const handleClickEditItem = () => {
       setEditItem(item)
@@ -71,7 +87,10 @@ const Items = ({ items, removeItemFromItems, setEditItem }) => {
                 {item.description}
               </Typography>
               <Typography gutterBottom>
-                Posted by 
+                [ Posted by {displayUsername} ]
+              </Typography>
+              <Typography gutterBottom>
+                Contact via {displayUserEmail}
               </Typography>
             </CardContent>
             <CardActions>

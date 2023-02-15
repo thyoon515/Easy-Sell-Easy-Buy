@@ -74,10 +74,10 @@ function App() {
         <Route path="/" element={<HomePage currentUser={currentUser} />} />
         <Route path="/login" element={<Login setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
-        <Route path="/items" element={<Items items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} userInfo={userInfo} />} />
-        <Route path='/addItem' element={<AddItem handleAddItem={handleAddItem} locations={locations} currentUser={currentUser} />} />
-        <Route path='/editItem' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} locations={locations} />} />
-        <Route path='/filterItems' element={<FilterItems items={items} />} />
+        <Route path="/items" element={<Items editItem={editItem} items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} userInfo={userInfo} />} />
+        <Route path='/items/new' element={<AddItem handleAddItem={handleAddItem} locations={locations} currentUser={currentUser} />} />
+        <Route path={`/items/${editItem.id}/edit`} element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} locations={locations} />} />
+        <Route path='/itemsByLocation' element={<FilterItems items={items} />} />
       </Routes>
     </BrowserRouter>
   );

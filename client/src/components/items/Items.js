@@ -9,7 +9,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
 
-const Items = ({ items, removeItemFromItems, setEditItem, userInfo }) => {
+const Items = ({ items, removeItemFromItems, setEditItem, userInfo, editItem }) => {
 
   const navigate = useNavigate();
 
@@ -56,7 +56,7 @@ const Items = ({ items, removeItemFromItems, setEditItem, userInfo }) => {
     
     const handleEditSubmit = (e) => {
       e.preventDefault()
-      navigate('/editItem')
+      navigate(`/items/${editItem.id}/edit`)
     }
 
     return (

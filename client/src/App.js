@@ -76,8 +76,8 @@ function App() {
         <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/items" element={<Items editItem={editItem} items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} userInfo={userInfo} />} />
         <Route path='/items/new' element={<AddItem handleAddItem={handleAddItem} locations={locations} currentUser={currentUser} />} />
-        <Route path={`/items/${editItem.id}/edit`} element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} locations={locations} />} />
-        <Route path='/itemsByLocation' element={<FilterItems items={items} />} />
+        <Route path='/editItem' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} locations={locations} />} />
+        <Route path='/items/filterByLocation' element={<FilterItems items={items} />} />
       </Routes>
     </BrowserRouter>
   );

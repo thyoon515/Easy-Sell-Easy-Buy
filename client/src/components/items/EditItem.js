@@ -49,12 +49,12 @@ const EditItem = ({ editItem, handleEditedItem, locations }) => {
             })
         }
       })
-      setEditItemFormData({
-        title: "",
-        image: "",
-        price: "",
-        description: ""
-      })
+      // setEditItemFormData({
+      //   title: "",
+      //   image: "",
+      //   price: "",
+      //   description: ""
+      // })
     }
   
     const handleEditChange = (e) => {

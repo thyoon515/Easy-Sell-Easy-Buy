@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index
         if params[:user_id]
@@ -19,8 +20,6 @@ class ItemsController < ApplicationController
     def create
         item = Item.create!(item_params)
         render json: item, status: :created
-    rescue ActiveRecord::RecordInvalid => e
-        render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
     end
 
     def destroy
@@ -31,7 +30,7 @@ class ItemsController < ApplicationController
 
     def update
         item = find_item
-        item.update(item_params)
+        item.update!(item_params)
         render json: item, status: :accepted
     end
 
@@ -47,6 +46,10 @@ class ItemsController < ApplicationController
 
     def render_not_found_response
         render json: { error: "Item not found" }, status: :not_found
+    end
+
+    def render_unprocessable_entity_response(invalid)
+        render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
 
 end

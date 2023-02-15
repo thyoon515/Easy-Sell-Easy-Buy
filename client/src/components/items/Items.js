@@ -56,7 +56,7 @@ const Items = ({ items, removeItemFromItems, setEditItem, userInfo, editItem }) 
     
     const handleEditSubmit = (e) => {
       e.preventDefault()
-      navigate(`/items/${editItem.id}/edit`)
+      navigate('/editItem')
     }
 
     return (

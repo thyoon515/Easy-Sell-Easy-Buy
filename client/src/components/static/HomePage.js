@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
 //import welcomeGif from '/home/thyoon515/Development/code/phase-4/easy-sell-easy-buy/client/src/components/static/WelccomeToESEBgif.gif'
 //import loggedInGif from '/home/thyoon515/Development/code/phase-4/easy-sell-easy-buy/client/src/components/static/ClickLinksgif.gif'
 
@@ -7,6 +9,7 @@ const HomePage = ({ currentUser }) => {
   if (currentUser) {
     return <div align='center' >
               <h1>Welcome, {currentUser.username}!</h1>
+              <Button color="primary" component={ Link } to="/currentUserItems">Show Your Items</Button>
               {/* <img src={loggedInGif} alt='Click Links Gif' /> */}
            </div>
   } else {

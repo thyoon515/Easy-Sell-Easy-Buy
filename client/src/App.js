@@ -8,10 +8,11 @@ import Items from './components/items/Items';
 import AddItem from './components/items/AddItem';
 import EditItem from './components/items/EditItem';
 import FilterItems from './components/items/FilterItems';
+import CurrentUserItems from './components/items/CurrentUserItems';
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState('');
+  const [currentUser, setCurrentUser] = useState([]);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [items, setItems] = useState([]);
   const [editItem, setEditItem] = useState([]);
@@ -39,7 +40,7 @@ function App() {
         });
       }
     });
-  }, []);
+  }, []); 
 
   useEffect(() => {
     fetch('/items')
@@ -67,6 +68,8 @@ function App() {
     setItems(updatedItem)
   }
 
+  console.log(editItem)
+
   return (
     <BrowserRouter>
       <NavBar userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} setCurrentUser={setCurrentUser} />
@@ -78,6 +81,7 @@ function App() {
         <Route path='/items/new' element={<AddItem handleAddItem={handleAddItem} locations={locations} currentUser={currentUser} />} />
         <Route path='/editItem' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} locations={locations} />} />
         <Route path='/items/filterByLocation' element={<FilterItems items={items} />} />
+        <Route path='/currentUserItems' element={<CurrentUserItems currentUser={currentUser} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
       </Routes>
     </BrowserRouter>
   );

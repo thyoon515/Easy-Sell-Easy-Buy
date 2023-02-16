@@ -9,12 +9,12 @@ import CardMedia from '@mui/material/CardMedia';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
 
-const CurrentUserItems = ({ currentUser, removeItemFromItems, setEditItem }) => {
+const CurrentUserItems = ({ currentUserItems, removeItemFromItems, setEditItem }) => {
     const navigate = useNavigate();
 
     const [errors, setErrors] = useState([]);
   
-    const displayCurrentUserItems = currentUser.items.map((item) => {
+    const displayCurrentUserItems = currentUserItems.map((item) => {
   
       const handleDeleteItem = () => {
         fetch(`/items/${item.id}`, {
@@ -39,7 +39,7 @@ const CurrentUserItems = ({ currentUser, removeItemFromItems, setEditItem }) => 
       
       const handleEditSubmit = (e) => {
         e.preventDefault()
-        navigate('/editItem')
+        navigate(`/items/${item.id}/edit`)
       }
   
       return (

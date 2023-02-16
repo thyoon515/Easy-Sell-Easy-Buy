@@ -24,7 +24,7 @@ const EditItem = ({ editItem, handleEditedItem, locations }) => {
   
     const handleSubmitEdit = (e) => {
       e.preventDefault();
-      fetch(`items/${editItem.id}`, {
+      fetch(`/items/${editItem.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json"

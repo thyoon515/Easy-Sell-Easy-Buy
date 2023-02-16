@@ -12,12 +12,13 @@ import CurrentUserItems from './components/items/CurrentUserItems';
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState([]);
+  const [currentUser, setCurrentUser] = useState('');
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [items, setItems] = useState([]);
   const [editItem, setEditItem] = useState([]);
   const [locations, setLocations] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
+  const [currentUserItems, setCurrentUserItems] = useState([]);
 
   useEffect(() => {
     fetch('/users')
@@ -45,8 +46,14 @@ function App() {
   useEffect(() => {
     fetch('/items')
       .then((r) => r.json())
-      .then((itemData) => setItems(itemData))
-  },[])
+      .then((itemData) => {
+        setItems(itemData);
+        const filterCurrentUserItems = itemData.filter((item) => item.user_id === currentUser.id);
+        setCurrentUserItems(filterCurrentUserItems);
+      })
+  },[currentUser.id])
+
+  console.log(currentUserItems)
 
   const handleAddItem = (postNewItem) => {
     setItems([...items, postNewItem])
@@ -68,8 +75,6 @@ function App() {
     setItems(updatedItem)
   }
 
-  console.log(editItem)
-
   return (
     <BrowserRouter>
       <NavBar userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} setCurrentUser={setCurrentUser} />
@@ -79,9 +84,9 @@ function App() {
         <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/items" element={<Items editItem={editItem} items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} userInfo={userInfo} />} />
         <Route path='/items/new' element={<AddItem handleAddItem={handleAddItem} locations={locations} currentUser={currentUser} />} />
-        <Route path='/editItem' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} locations={locations} />} />
-        <Route path='/items/filterByLocation' element={<FilterItems items={items} />} />
-        <Route path='/currentUserItems' element={<CurrentUserItems currentUser={currentUser} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
+        <Route path='/items/:id/edit' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} locations={locations} />} />
+        <Route path='/items/locations' element={<FilterItems items={items} />} />
+        <Route path='/users/:id/items' element={<CurrentUserItems currentUserItems={currentUserItems} currentUser={currentUser} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
       </Routes>
     </BrowserRouter>
   );

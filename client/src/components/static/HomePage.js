@@ -14,7 +14,8 @@ const HomePage = ({ currentUser }) => {
            </div>
   } else {
     return <div align='center' >
-              <h1>Please, Log In!</h1>
+              <h1>Easy to Sell, Easy to Buy within NYC</h1>
+              <h1>Please, Log In to Start!</h1>
               {/* <img 
                 src={welcomeGif} 
                 alt='Welcome To ESEB' 

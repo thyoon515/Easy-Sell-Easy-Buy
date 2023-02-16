@@ -53,15 +53,18 @@ function App() {
       })
   },[currentUser.id])
 
-  console.log(currentUserItems)
-
   const handleAddItem = (postNewItem) => {
     setItems([...items, postNewItem])
+    setCurrentUserItems([...currentUserItems, postNewItem])
   }
+
+  
 
   const removeItemFromItems = (deletedItem) => {
     const updatedListOfItems = items.filter((item) => item.id !== deletedItem.id);
     setItems(updatedListOfItems)
+    const updatedListOfCurrentUserItems = currentUserItems.filter((item) => item.id !== deletedItem.id);
+    setCurrentUserItems(updatedListOfCurrentUserItems)
   }
 
   const handleEditedItem = (editedItem) => {
@@ -73,6 +76,15 @@ function App() {
       }
     })
     setItems(updatedItem)
+
+    const updatedCurrentItem = currentUserItems.map(item => {
+      if(item.id === editedItem.id){
+        return editedItem;
+      } else {
+        return item;
+      }
+    })
+    setCurrentUserItems(updatedCurrentItem)
   }
 
   return (
@@ -84,7 +96,7 @@ function App() {
         <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/items" element={<Items editItem={editItem} items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} userInfo={userInfo} />} />
         <Route path='/items/new' element={<AddItem handleAddItem={handleAddItem} locations={locations} currentUser={currentUser} />} />
-        <Route path='/items/:id/edit' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} locations={locations} />} />
+        <Route path='/items/:id/edit' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} locations={locations} currentUser={currentUser} />} />
         <Route path='/items/locations' element={<FilterItems items={items} />} />
         <Route path='/users/:id/items' element={<CurrentUserItems currentUserItems={currentUserItems} currentUser={currentUser} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
       </Routes>

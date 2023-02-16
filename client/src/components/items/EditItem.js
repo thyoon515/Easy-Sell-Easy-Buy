@@ -10,7 +10,7 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 
-const EditItem = ({ editItem, handleEditedItem, locations }) => {
+const EditItem = ({ editItem, handleEditedItem, locations, currentUser }) => {
     const navigate = useNavigate();
 
     const [editItemFormData, setEditItemFormData] = useState({
@@ -41,7 +41,7 @@ const EditItem = ({ editItem, handleEditedItem, locations }) => {
           if(r.ok){
             r.json().then((editedItem) =>{
                 handleEditedItem(editedItem)
-                navigate('/items')
+                navigate(`/users/${currentUser.id}/items`)
             })
         }else{
             r.json().then((e) => {

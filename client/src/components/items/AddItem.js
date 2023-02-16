@@ -42,7 +42,7 @@ const AddItem = ({ handleAddItem, locations, currentUser }) => {
           if(r.ok){
             r.json().then((postNewItem) =>{
               handleAddItem(postNewItem)
-              navigate('/items')
+              navigate(`/users/${currentUser.id}/items`)
           })
         }else{
             r.json().then((e) => {

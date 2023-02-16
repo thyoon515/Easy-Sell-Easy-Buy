@@ -61,7 +61,7 @@ const CurrentUserItems = ({ currentUserItems, removeItemFromItems, setEditItem }
                   {item.title}
                 </Typography>
                 <Typography gutterBottom variant="h6" component="h2">
-                  {/* Available in {displayLocation} */}
+                  Available in {item.location.nyc_borough_name}
                 </Typography>
                 <Typography gutterBottom>
                   {item.price}

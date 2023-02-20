@@ -4,11 +4,11 @@ import NavBar from './components/navigation/NavBar';
 import HomePage from "./components/static/HomePage";
 import Login from "./components/sessions/Login";
 import Signup from "./components/sessions/Signup";
-import Items from './components/items/Items';
-import AddItem from './components/items/AddItem';
-import EditItem from './components/items/EditItem';
-import FilterItems from './components/items/FilterItems';
-import CurrentUserItems from './components/items/CurrentUserItems';
+import ItemsPage from './components/items/ItemsPage';
+import AddItemPage from './components/items/AddItemPage';
+import EditItemPage from './components/items/EditItemPage';
+import FilterItemsPage from './components/items/FilterItemsPage';
+import CurrentUserItemsPage from './components/items/CurrentUserItemsPage';
 
 function App() {
 
@@ -94,11 +94,11 @@ function App() {
         <Route path="/" element={<HomePage currentUser={currentUser} />} />
         <Route path="/login" element={<Login setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
-        <Route path="/items" element={<Items editItem={editItem} items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} userInfo={userInfo} />} />
-        <Route path='/items/new' element={<AddItem handleAddItem={handleAddItem} locations={locations} currentUser={currentUser} />} />
-        <Route path='/items/:id/edit' element={<EditItem editItem={editItem} handleEditedItem={handleEditedItem} locations={locations} currentUser={currentUser} />} />
-        <Route path='/items/locations' element={<FilterItems items={items} />} />
-        <Route path='/users/:id/items' element={<CurrentUserItems currentUserItems={currentUserItems} currentUser={currentUser} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
+        <Route path="/items" element={<ItemsPage editItem={editItem} items={items} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} userInfo={userInfo} />} />
+        <Route path='/items/new' element={<AddItemPage handleAddItem={handleAddItem} locations={locations} currentUser={currentUser} />} />
+        <Route path='/items/:id/edit' element={<EditItemPage editItem={editItem} handleEditedItem={handleEditedItem} locations={locations} currentUser={currentUser} />} />
+        <Route path='/items/locations' element={<FilterItemsPage items={items} />} />
+        <Route path='/users/:id/items' element={<CurrentUserItemsPage currentUserItems={currentUserItems} currentUser={currentUser} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
       </Routes>
     </BrowserRouter>
   );

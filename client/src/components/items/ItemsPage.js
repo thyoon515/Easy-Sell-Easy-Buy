@@ -7,7 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Container from '@mui/material/Container';
 
 
-const Items = ({ items, userInfo }) => {
+const ItemsPage = ({ items, userInfo }) => {
 
   const displayItems = items.map((item) => {
 
@@ -57,7 +57,7 @@ const Items = ({ items, userInfo }) => {
                 [ Posted by {displayUsername} ]
               </Typography>
               <Typography gutterBottom>
-                Contact via {displayUserEmail}
+                Interested? Send your offer {displayUserEmail}
               </Typography>
             </CardContent>
           </Card>
@@ -79,4 +79,4 @@ const Items = ({ items, userInfo }) => {
   )
 }
 
-export default Items
+export default ItemsPage

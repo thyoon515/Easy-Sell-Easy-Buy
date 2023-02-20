@@ -9,7 +9,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
 
-const CurrentUserItems = ({ currentUserItems, removeItemFromItems, setEditItem }) => {
+const CurrentUserItemsPage = ({ currentUserItems, removeItemFromItems, setEditItem }) => {
     const navigate = useNavigate();
 
     const [errors, setErrors] = useState([]);
@@ -104,4 +104,4 @@ const CurrentUserItems = ({ currentUserItems, removeItemFromItems, setEditItem }
     )
 }
 
-export default CurrentUserItems
+export default CurrentUserItemsPage

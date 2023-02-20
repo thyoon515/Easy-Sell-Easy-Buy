@@ -9,7 +9,7 @@ const HomePage = ({ currentUser }) => {
   if (currentUser) {
     return <div align='center' >
               <h1>Welcome, {currentUser.username}!</h1>
-              <Button color="primary" component={ Link } to={`/users/${currentUser.id}/items`}>Show Your Items</Button>
+              <Button color="primary" component={ Link } to={`/users/${currentUser.id}/items`}>Click To See Your Items</Button>
               {/* <img src={loggedInGif} alt='Click Links Gif' /> */}
            </div>
   } else {

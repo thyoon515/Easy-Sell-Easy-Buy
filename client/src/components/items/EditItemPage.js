@@ -10,7 +10,7 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 
-const EditItem = ({ editItem, handleEditedItem, locations, currentUser }) => {
+const EditItemPage = ({ editItem, handleEditedItem, locations, currentUser }) => {
     const navigate = useNavigate();
 
     const [editItemFormData, setEditItemFormData] = useState({
@@ -143,4 +143,4 @@ const EditItem = ({ editItem, handleEditedItem, locations, currentUser }) => {
     );
 }
 
-export default EditItem
+export default EditItemPage

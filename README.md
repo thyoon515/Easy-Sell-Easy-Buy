@@ -1,10 +1,16 @@
 # Easy Sell Easy Buy (ESEB)
 
+Buy and sell any items you desire within NYC area.
+
 ## Description
 
-This project is scaffolded so that you can build a React frontend and Rails
-backend together, and easily deploy them to Render.
+ESEB is a single page application build with React.js for the frontend and Ruby on Rails with PostgreSQL for the backend. Purpose of the app is to buy and sell easily across the area of NYC. A user can simply signup and login to start using the app. User can view all items posted by all users. User can post a item then view their own items to edit or delete an item. Lastly, user can view items by locations. 
 
+### Models and Relationship
+
+There are 3 models for this app. User, Item and Location models. These models have many-to-manny relationship. Item model is the join table that holds the two foreign key from User and Location models. Therefore, Item belongs to a User and belongs a Location. User has many Items and has many Locations through Items. Location has many Items and has many Users through Items.
+
+# ![](user_item_location_diagram.PNG)
 
 ## Requirements
 

@@ -23,7 +23,7 @@ const FilterItemsPage = ({ items }) => {
       item.location_id === selectLocation
     )
   
-    const displayItems = filteredItems.map((item) => {
+    const displayFilteredItems = filteredItems.map((item) => {
       return (
         <Grid item key={item.id} xs={12} sm={6} md={4}>
           <form>
@@ -57,7 +57,7 @@ const FilterItemsPage = ({ items }) => {
         </Grid>
       )
     })
-  
+
     return (
       <Container maxWidth="sm">
         <Box sx={{ m: 4 }} >
@@ -77,7 +77,7 @@ const FilterItemsPage = ({ items }) => {
           </FormControl>
           <Container>
             <Grid>
-              {displayItems}
+              { displayFilteredItems }
             </Grid>
           </Container>
         </Box>

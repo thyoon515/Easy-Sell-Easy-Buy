@@ -48,6 +48,13 @@ Additionally, the app is deployed on [Render](https://easy-sell-easy-buy.onrende
 
 ### How to use the app
 
+![](HowToUseESEBgif.png)
 
+## Thanks to:
 
-## Credit
+- Banner : [Banner Maker](https://banner.godori.dev)
+- Bnnaer Image : [Mayple](https://www.mayple.com/blog/online-marketplaces)
+- Data Relationship Diagram : [dbdiagram.io](https://dbdiagram.io/home)
+- Flatiron School : [FlatironSchool](https://flatironschool.com/)
+- GIF : [Video-to-gif](https://ezgif.com/video-to-gif)
+- Material UI : [MUI](https://mui.com/)

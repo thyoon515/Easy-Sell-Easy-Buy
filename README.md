@@ -1,4 +1,5 @@
 # Easy Sell Easy Buy (ESEB)
+![](OnlineMarket.png)
 
 Buy and sell any items you desire within NYC area.
 
@@ -33,7 +34,7 @@ rails db:create
 npm install --prefix client
 
 ```
-Lastly, start psql service, run rail server and start npm --prefix client,
+Lastly, start psql service, run rails server and start npm --prefix client,
 
 ```sh
 
@@ -42,3 +43,11 @@ rails s
 npm start --prefix client
 
 ```
+
+Additionally, the app is deployed on [Render](https://easy-sell-easy-buy.onrender.com).
+
+### How to use the app
+
+
+
+## Credit

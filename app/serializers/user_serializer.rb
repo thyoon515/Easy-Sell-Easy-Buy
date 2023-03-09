@@ -3,7 +3,4 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :items
 
-  # def test
-  #   object.items.map()
-  # end
 end

@@ -36,6 +36,10 @@ class ItemsController < ApplicationController
         render json: item, status: :accepted
     end
 
+    # def search
+    #     byebug
+    # end
+
     private
 
     def find_item

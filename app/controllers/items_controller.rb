@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
     before_action :authorize
-    skip_before_action :authorize, only: [:index]
+    skip_before_action :authorize, only: [:index, :search]
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
@@ -36,9 +36,9 @@ class ItemsController < ApplicationController
         render json: item, status: :accepted
     end
 
-    # def search
-    #     byebug
-    # end
+    def search
+        byebug
+    end
 
     private
 

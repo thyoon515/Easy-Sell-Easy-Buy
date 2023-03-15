@@ -11,7 +11,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-const FilterItemsPage = ({ items }) => {
+const ItemsListByLocationPage = ({ items }) => {
 
     const [selectLocation, setSelectLocation] = useState('')
 
@@ -85,4 +85,4 @@ const FilterItemsPage = ({ items }) => {
     )
 }
 
-export default FilterItemsPage
+export default ItemsListByLocationPage

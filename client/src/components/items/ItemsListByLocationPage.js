@@ -22,15 +22,21 @@ const ItemsListByLocationPage = ({ users, locations }) => {
     const displayFilteredItems = users.map((user) => {
 
       const filteredItems = user.items.filter((item) => {
-        if (item.location_id === selectLocation)
-        return item
-    })
+        if (item.location_id === selectLocation) {
+          return true
+        } else {
+          return false
+        }
+      })
 
       return filteredItems.map((item) =>{
 
         const displayLocation = locations.map(location => {
-          if (location.id === item.location_id)
-          return location.nyc_borough_name
+          if (location.id === item.location_id) {
+            return location.nyc_borough_name
+          } else {
+            return null
+          }
         })
 
           return (

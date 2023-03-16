@@ -14,8 +14,11 @@ const ItemsListPage = ({ users, locations }) => {
     return user.items.map(item => {
     
       const displayLocation = locations.map(location => {
-        if (location.id === item.location_id)
-        return location.nyc_borough_name
+        if (location.id === item.location_id) {
+          return location.nyc_borough_name
+        } else {
+          return null
+        }
       })
 
         return (

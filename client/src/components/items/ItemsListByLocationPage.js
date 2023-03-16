@@ -11,53 +11,69 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-const ItemsListByLocationPage = ({ items }) => {
+const ItemsListByLocationPage = ({ users, locations }) => {
 
     const [selectLocation, setSelectLocation] = useState('')
 
     const handleChangeSelectLocation = (e) => {
       setSelectLocation(e.target.value)
     }
-  
-    const filteredItems = items.filter((item) => 
-      item.location_id === selectLocation
-    )
-  
-    const displayFilteredItems = filteredItems.map((item) => {
-      return (
-        <Grid item key={item.id} xs={12} sm={6} md={4}>
-          <form>
-            <Card
-            sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-            >
-                <CardMedia
-                  component="img"
-                  sx={{
-                    pt: '56.25%',
-                  }}
-                  image={item.image}
-                  alt="item_image"
-                />
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography gutterBottom variant="h4" component="h2">
-                    {item.title}
-                </Typography>
-                <Typography gutterBottom variant="h6" component="h2">
-                    Available in {item.location.nyc_borough_name}
-                </Typography>
-                <Typography gutterBottom>
-                    {item.price}
-                </Typography>
-                <Typography gutterBottom>
-                    {item.description}
-                </Typography>
-              </CardContent>
-            </Card>
-          </form>
-        </Grid>
-      )
+
+    const displayFilteredItems = users.map((user) => {
+
+      const filteredItems = user.items.filter((item) => {
+        if (item.location_id === selectLocation)
+        return item
     })
 
+      return filteredItems.map((item) =>{
+
+        const displayLocation = locations.map(location => {
+          if (location.id === item.location_id)
+          return location.nyc_borough_name
+        })
+
+          return (
+            <Grid item key={item.id} xs={12} sm={6} md={4}>
+              <form>
+                <Card
+                sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                >
+                    <CardMedia
+                      component="img"
+                      sx={{
+                        pt: '56.25%',
+                      }}
+                      image={item.image}
+                      alt="item_image"
+                    />
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    <Typography gutterBottom variant="h4" component="h2">
+                        {item.title}
+                    </Typography>
+                    <Typography gutterBottom variant="h6" component="h2">
+                        Available in {displayLocation}
+                    </Typography>
+                    <Typography gutterBottom>
+                        {item.price}
+                    </Typography>
+                    <Typography gutterBottom>
+                        {item.description}
+                    </Typography>
+                    <Typography gutterBottom>
+                    [ Posted by {user.username} ]
+                    </Typography>
+                    <Typography gutterBottom>
+                      Interested? Send your offer {user.email}
+                    </Typography>
+                    </CardContent>
+                </Card>
+              </form>
+            </Grid>
+          )
+        })
+      })
+     
     return (
       <Container maxWidth="sm">
         <Box sx={{ m: 4 }} >

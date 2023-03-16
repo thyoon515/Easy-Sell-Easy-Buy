@@ -16,7 +16,7 @@ const ItemsListPage = ({ users, locations }) => {
       const displayLocation = locations.map(location => {
         if (location.id === item.location_id)
         return location.nyc_borough_name
-    })
+      })
 
         return (
           <Grid item key={item.id} xs={12} sm={6} md={4}>

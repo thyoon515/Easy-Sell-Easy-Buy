@@ -12,7 +12,7 @@ import CurrentUserItemsPage from './components/items/CurrentUserItemsPage';
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState('');
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [items, setItems] = useState([]);
   const [editItem, setEditItem] = useState([]);
@@ -88,13 +88,13 @@ function App() {
     <BrowserRouter>
       <NavBar userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} setCurrentUser={setCurrentUser} />
       <Routes>
-        <Route path="/" element={<HomePage currentUser={currentUser} setCurrentUserItems={setCurrentUserItems} />} />
+        <Route path="/" element={<HomePage currentUser={currentUser}/>} />
         <Route path="/login" element={<Login setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/signup" element={<Signup setCurrentUser={setCurrentUser} setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/items" element={<ItemsListPage users={users} locations={locations} />} />
         <Route path='/items/new' element={<AddItemPage handleAddItem={handleAddItem} locations={locations} currentUser={currentUser} />} />
         <Route path='/items/:id/edit' element={<EditItemPage editItem={editItem} handleEditedItem={handleEditedItem} locations={locations} currentUser={currentUser} />} />
-        <Route path='/items/locations' element={<ItemsListByLocationPage items={items} />} />
+        <Route path='/items/locations' element={<ItemsListByLocationPage users={users} locations={locations} />} />
         <Route path='/users/:id/items' element={<CurrentUserItemsPage currentUserItems={currentUserItems} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
       </Routes>
     </BrowserRouter>

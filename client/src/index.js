@@ -5,13 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './theme';
+import { CurrentUserProvider } from './context/CurrentUser';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <CurrentUserProvider>
     <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>
-  </React.StrictMode>,
+  </CurrentUserProvider>,
   document.getElementById('root')
 );
 

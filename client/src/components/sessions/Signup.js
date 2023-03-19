@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -11,14 +11,17 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { CurrentUserContext } from '../../context/CurrentUser';
 
 
-const Signup = ({ setCurrentUser, setUserLoggedIn }) => {
+const Signup = ({ setUserLoggedIn }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState([]);
+  // eslint-disable-next-line
+  const [currentUser, setCurrentUser] = useContext(CurrentUserContext)
   
   const theme = createTheme();
 
@@ -38,9 +41,9 @@ const Signup = ({ setCurrentUser, setUserLoggedIn }) => {
     })
     .then(res => {
       if(res.ok){
-          res.json().then(user => {
-            setCurrentUser(user)
+          res.json().then((user) => {
             setUserLoggedIn(true)
+            setCurrentUser(user)
             navigate('/')
           })
       }else{

@@ -1,4 +1,4 @@
-import React from 'react';
+import {useContext} from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -7,19 +7,20 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { useNavigate } from 'react-router-dom';
+import { CurrentUserContext } from '../../context/CurrentUser';
 
-
-const NavBar = ({ setCurrentUser, setUserLoggedIn, userLoggedIn }) => {
-  
+const NavBar = ({ setUserLoggedIn, userLoggedIn }) => {
   
   const navigate = useNavigate();
+  // eslint-disable-next-line
+  const [currentUser, setCurrentUser] = useContext(CurrentUserContext)
 
   const handleLogout = () => {
     fetch('/logout', {
       method: "DELETE",
-    }).then(() => {
-      setCurrentUser('') 
+    }).then(() => { 
       setUserLoggedIn(false)
+      setCurrentUser({})
       navigate('/')
     })
   }

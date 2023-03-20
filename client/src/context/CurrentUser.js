@@ -6,8 +6,6 @@ function CurrentUserProvider({ children }) {
 
     const [currentUser, setCurrentUser] = useState({})
 
-    console.log(currentUser)
-
     const value = [currentUser, setCurrentUser]
 
     return (

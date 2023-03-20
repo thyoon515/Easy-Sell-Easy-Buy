@@ -10,14 +10,26 @@ import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUser';
 
-const CurrentUserItemsPage = ({ users, locations, removeItemFromItems, setEditItem }) => {
+const CurrentUserItemsPage = ({ users, setUsers, locations, setEditItem }) => {
     
   const navigate = useNavigate();
 
   const [currentUser] = useContext(CurrentUserContext)
+  const [currentUserItems, setCurrentUserItems] = useState(currentUser.items)
   const [errors, setErrors] = useState([]);
 
-  const displayCurrentUserItems = currentUser.items.map((item) => {
+  const handleRemoveItem = (deletedItem) => {
+    const filteredCurrentUserItems = currentUser.items.filter(item => item.id !== deletedItem.id)
+    const updatedCurrentUserItems = currentUser.items = filteredCurrentUserItems
+    setCurrentUserItems(updatedCurrentUserItems)
+    const filteredUsers = users.filter(user => user.id !== currentUser.id)
+    const updatedUsers = [...filteredUsers, currentUser]
+    setUsers(updatedUsers)
+  }
+
+  console.log(currentUser)
+
+  const displayCurrentUserItems = currentUserItems.map((item) => {
 
     const displayLocation = locations.map(location => {
       if (location.id === item.location_id) {
@@ -34,7 +46,7 @@ const CurrentUserItemsPage = ({ users, locations, removeItemFromItems, setEditIt
       .then(res => {
         if(res.ok){
           res.json().then((deletedItem) => {
-            removeItemFromItems(deletedItem)
+            handleRemoveItem(deletedItem)
           })
         }else{
           res.json().then((e) => {

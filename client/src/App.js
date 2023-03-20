@@ -17,6 +17,7 @@ function App() {
   const [locations, setLocations] = useState([]);
   const [users, setUsers] = useState([]); 
   
+  console.log(users)
 
   useEffect(() => {
     fetch('/users')
@@ -53,12 +54,12 @@ function App() {
     // setCurrentUserItems([...currentUserItems, postNewItem])
   }
 
-  const removeItemFromItems = (deletedItem) => {
+  //const removeItemFromItems = (deletedItem) => {
     // const updatedListOfItems = items.filter((item) => item.id !== deletedItem.id);
     // setItems(updatedListOfItems)
     // const updatedListOfCurrentUserItems = currentUserItems.filter((item) => item.id !== deletedItem.id);
     // setCurrentUserItems(updatedListOfCurrentUserItems)
-  }
+  //}
 
   const handleEditedItem = (editedItem) => {
     // const updatedItem = items.map(item => {
@@ -84,14 +85,14 @@ function App() {
     <BrowserRouter>
       <NavBar userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage userLoggedIn={userLoggedIn} />} />
         <Route path="/login" element={<Login setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/signup" element={<Signup setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/items" element={<ItemsListPage users={users} locations={locations} />} />
         <Route path='/items/new' element={<AddItemPage handleAddItem={handleAddItem} locations={locations} />} />
         <Route path='/items/:id/edit' element={<EditItemPage editItem={editItem} handleEditedItem={handleEditedItem} locations={locations} />} />
         <Route path='/items/locations' element={<ItemsListByLocationPage users={users} locations={locations} />} />
-        <Route path='/users/:id/items' element={<CurrentUserItemsPage users={users} locations={locations} removeItemFromItems={removeItemFromItems} setEditItem={setEditItem} />} />
+        <Route path='/users/:id/items' element={<CurrentUserItemsPage users={users} setUsers={setUsers} locations={locations} setEditItem={setEditItem} />} />
       </Routes>
     </BrowserRouter>
   );

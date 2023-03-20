@@ -14,20 +14,18 @@ const CurrentUserItemsPage = ({ users, setUsers, locations, setEditItem }) => {
     
   const navigate = useNavigate();
 
-  const [currentUser] = useContext(CurrentUserContext)
-  const [currentUserItems, setCurrentUserItems] = useState(currentUser.items)
+  const [currentUser] = useContext(CurrentUserContext);
   const [errors, setErrors] = useState([]);
 
   const handleRemoveItem = (deletedItem) => {
     const filteredCurrentUserItems = currentUser.items.filter(item => item.id !== deletedItem.id)
-    const updatedCurrentUserItems = currentUser.items = filteredCurrentUserItems
-    setCurrentUserItems(updatedCurrentUserItems)
+    currentUser.items = filteredCurrentUserItems
     const filteredUsers = users.filter(user => user.id !== currentUser.id)
     const updatedUsers = [...filteredUsers, currentUser]
     setUsers(updatedUsers)
   }
 
-  const displayCurrentUserItems = currentUserItems.map((item) => {
+  const displayCurrentUserItems = currentUser.items.map((item) => {
 
     const displayLocation = locations.map(location => {
       if (location.id === item.location_id) {

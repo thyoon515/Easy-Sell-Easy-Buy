@@ -24,13 +24,10 @@ const AddItemPage = ({ users, setUsers, locations }) => {
   const [selectLocation, setSelectLocation] = useState('');
   const [errors, setErrors] = useState([]);
   const [currentUser] = useContext(CurrentUserContext);
-  // eslint-disable-next-line
-  const [currentUserItems, setCurrentUserItems] = useState(currentUser.items);
 
   const handleAddItem = (postNewItem) => {
     const newCurrentUserItemsArray = [...currentUser.items, postNewItem]
-    const updatedCurrentUserItemsArray = currentUser.items = newCurrentUserItemsArray
-    setCurrentUserItems(updatedCurrentUserItemsArray)
+    currentUser.items = newCurrentUserItemsArray
     const filteredUsers = users.filter(user => user.id !== currentUser.id)
     const updatedUsers = [...filteredUsers, currentUser]
     setUsers(updatedUsers)

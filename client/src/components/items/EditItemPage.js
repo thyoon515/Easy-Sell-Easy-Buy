@@ -13,9 +13,7 @@ import { CurrentUserContext } from '../../context/CurrentUser';
 
 const EditItemPage = ({ users, setUsers, editItem, locations }) => {
 
-    const [currentUser] = useContext(CurrentUserContext)
-    // eslint-disable-next-line
-    const [currentUserItems, setCurrentUserItems] = useState(currentUser.items)
+    const [currentUser] = useContext(CurrentUserContext);
 
     const navigate = useNavigate();
 
@@ -24,9 +22,9 @@ const EditItemPage = ({ users, setUsers, editItem, locations }) => {
       image: editItem.image,
       price: editItem.price,
       description: editItem.description
-    })
-    const [errors, setErrors] = useState([])
-    const [editSelectLocation, setEditSelectLocation] = useState(editItem.location_id)
+    });
+    const [errors, setErrors] = useState([]);
+    const [editSelectLocation, setEditSelectLocation] = useState(editItem.location_id);
 
     const handleEditedItem = (editedItem) => {
       const currentUserItemsArray = currentUser.items.map(item => {
@@ -36,8 +34,7 @@ const EditItemPage = ({ users, setUsers, editItem, locations }) => {
           return item
         }
       })
-      const updatedCurrentUserItems = currentUser.items = currentUserItemsArray
-      setCurrentUserItems(updatedCurrentUserItems)
+      currentUser.items = currentUserItemsArray
       const filteredUsers = users.filter(user => user.id !== currentUser.id)
       const updatedUsers = [...filteredUsers, currentUser]
       setUsers(updatedUsers)

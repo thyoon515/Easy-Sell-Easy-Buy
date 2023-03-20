@@ -27,8 +27,6 @@ const CurrentUserItemsPage = ({ users, setUsers, locations, setEditItem }) => {
     setUsers(updatedUsers)
   }
 
-  console.log(currentUser)
-
   const displayCurrentUserItems = currentUserItems.map((item) => {
 
     const displayLocation = locations.map(location => {

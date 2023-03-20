@@ -36,9 +36,12 @@ class ItemsController < ApplicationController
         render json: item, status: :accepted
     end
 
-    def search
-        byebug
-    end
+    # def search
+        
+    #     items = Item.all
+    #     items_with_30c_less = items.map {|item| item.description.length < 30}
+        
+    # end
 
     private
 

@@ -15,9 +15,7 @@ function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [editItem, setEditItem] = useState([]);
   const [locations, setLocations] = useState([]);
-  const [users, setUsers] = useState([]); 
-  
-  console.log(users)
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     fetch('/users')
@@ -41,46 +39,6 @@ function App() {
     });
   }, []); 
 
-  // useEffect(() => {
-  //   fetch('/items')
-  //     .then((r) => r.json())
-  //     .then((itemData) => {
-  //       setItems(itemData);
-  //     })
-  // },[])
-
-  const handleAddItem = (postNewItem) => {
-    // setItems([...items, postNewItem])
-    // setCurrentUserItems([...currentUserItems, postNewItem])
-  }
-
-  //const removeItemFromItems = (deletedItem) => {
-    // const updatedListOfItems = items.filter((item) => item.id !== deletedItem.id);
-    // setItems(updatedListOfItems)
-    // const updatedListOfCurrentUserItems = currentUserItems.filter((item) => item.id !== deletedItem.id);
-    // setCurrentUserItems(updatedListOfCurrentUserItems)
-  //}
-
-  const handleEditedItem = (editedItem) => {
-    // const updatedItem = items.map(item => {
-    //   if(item.id === editedItem.id){
-    //     return editedItem;
-    //   } else {
-    //     return item;
-    //   }
-    // })
-    // setItems(updatedItem)
-
-    // const updatedCurrentItem = currentUserItems.map(item => {
-    //   if(item.id === editedItem.id){
-    //     return editedItem;
-    //   } else {
-    //     return item;
-    //   }
-    // })
-    // setCurrentUserItems(updatedCurrentItem)
-  }
-
   return (
     <BrowserRouter>
       <NavBar userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} />
@@ -89,8 +47,8 @@ function App() {
         <Route path="/login" element={<Login setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/signup" element={<Signup setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/items" element={<ItemsListPage users={users} locations={locations} />} />
-        <Route path='/items/new' element={<AddItemPage handleAddItem={handleAddItem} locations={locations} />} />
-        <Route path='/items/:id/edit' element={<EditItemPage editItem={editItem} handleEditedItem={handleEditedItem} locations={locations} />} />
+        <Route path='/items/new' element={<AddItemPage users={users} setUsers={setUsers} locations={locations} />} />
+        <Route path='/items/:id/edit' element={<EditItemPage users={users} setUsers={setUsers} editItem={editItem} locations={locations} />} />
         <Route path='/items/locations' element={<ItemsListByLocationPage users={users} locations={locations} />} />
         <Route path='/users/:id/items' element={<CurrentUserItemsPage users={users} setUsers={setUsers} locations={locations} setEditItem={setEditItem} />} />
       </Routes>

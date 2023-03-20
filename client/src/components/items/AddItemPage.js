@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState, useContext } from 'react';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -9,8 +9,9 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { CurrentUserContext } from '../../context/CurrentUser';
 
-const AddItemPage = ({ handleAddItem, locations, currentUser }) => {
+const AddItemPage = ({ users, setUsers, locations }) => {
     
   const navigate = useNavigate();
 
@@ -19,9 +20,21 @@ const AddItemPage = ({ handleAddItem, locations, currentUser }) => {
     image: "",
     price: "",
     description: ""
-  })
-  const [selectLocation, setSelectLocation] = useState('')
-  const [errors, setErrors] = useState([])
+  });
+  const [selectLocation, setSelectLocation] = useState('');
+  const [errors, setErrors] = useState([]);
+  const [currentUser] = useContext(CurrentUserContext);
+  // eslint-disable-next-line
+  const [currentUserItems, setCurrentUserItems] = useState(currentUser.items);
+
+  const handleAddItem = (postNewItem) => {
+    const newCurrentUserItemsArray = [...currentUser.items, postNewItem]
+    const updatedCurrentUserItemsArray = currentUser.items = newCurrentUserItemsArray
+    setCurrentUserItems(updatedCurrentUserItemsArray)
+    const filteredUsers = users.filter(user => user.id !== currentUser.id)
+    const updatedUsers = [...filteredUsers, currentUser]
+    setUsers(updatedUsers)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();

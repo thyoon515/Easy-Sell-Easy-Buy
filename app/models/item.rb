@@ -7,4 +7,8 @@ class Item < ApplicationRecord
     validates :image, presence: true
     validates :price, presence: true
     validates :description, presence: true
+
+    # def self.search
+    #     puts 'hello'
+    # end
 end

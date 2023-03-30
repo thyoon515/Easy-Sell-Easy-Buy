@@ -41,7 +41,8 @@ class ItemsController < ApplicationController
     private
 
     def find_item
-        Item.find(params[:id])
+        user = User.find(session[:user_id])
+        user.items.find(params[:id])
     end
 
     def item_params

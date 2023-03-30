@@ -16,12 +16,21 @@ function App() {
   const [editItem, setEditItem] = useState([]);
   const [locations, setLocations] = useState([]);
   const [users, setUsers] = useState([]);
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
     fetch('/users')
       .then(r => r.json())
       .then(usersData => setUsers(usersData))
   },[])
+
+  useEffect(() => {
+    fetch('/items')
+      .then(r => r.json())
+      .then(allItems => setItems(allItems))
+  },[])
+
+  console.log(items)
 
   useEffect(() => {
     fetch('/locations')
@@ -46,7 +55,7 @@ function App() {
         <Route path="/" element={<HomePage userLoggedIn={userLoggedIn} />} />
         <Route path="/login" element={<Login setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/signup" element={<Signup setUserLoggedIn={setUserLoggedIn} />} />
-        <Route path="/items" element={<ItemsListPage users={users} locations={locations} />} />
+        <Route path="/items" element={<ItemsListPage items={items} />} />
         <Route path='/items/new' element={<AddItemPage users={users} setUsers={setUsers} locations={locations} />} />
         <Route path='/items/:id/edit' element={<EditItemPage users={users} setUsers={setUsers} editItem={editItem} locations={locations} />} />
         <Route path='/items/locations' element={<ItemsListByLocationPage users={users} locations={locations} />} />

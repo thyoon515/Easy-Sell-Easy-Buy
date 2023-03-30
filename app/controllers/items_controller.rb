@@ -5,13 +5,7 @@ class ItemsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index
-        if params[:user_id]
-            user = User.find(params[:user_id])
-            items = user.items
-        else
-            items = Item.all
-        end
-          render json: items, include: :location
+        render json: Item.all
     end
 
     def show
@@ -20,7 +14,8 @@ class ItemsController < ApplicationController
     end
 
     def create
-        item = Item.create!(item_params)
+        user = User.find(session[:user_id])
+        item = user.items.create!(item_params)
         render json: item, status: :created
     end
 
@@ -37,10 +32,10 @@ class ItemsController < ApplicationController
     end
 
     # def search
-        
+    #     word = params[:word]
     #     items = Item.all
-    #     items_with_30c_less = items.map {|item| item.description.length < 30}
-        
+    #     items_with_word = items.where('lower(description) like ?', "%#{word.downcase}%")
+    #     render json: items_with_word
     # end
 
     private
@@ -50,7 +45,7 @@ class ItemsController < ApplicationController
     end
 
     def item_params
-        params.permit(:title, :image, :price, :description, :user_id, :location_id)
+        params.permit(:title, :image, :price, :description, :location_id)
     end
 
     def render_not_found_response

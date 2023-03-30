@@ -4,10 +4,10 @@ import NavBar from './components/navigation/NavBar';
 import HomePage from "./components/static/HomePage";
 import Login from "./components/sessions/Login";
 import Signup from "./components/sessions/Signup";
-import ItemsListPage from './components/items/ItemsListPage';
+import AllItemsList from './components/items/AllItemsList';
 import AddItemPage from './components/items/AddItemPage';
 import EditItemPage from './components/items/EditItemPage';
-import ItemsListByLocationPage from './components/items/ItemsListByLocationPage';
+import ItemsListByLocation from './components/items/ItemsListByLocation';
 import CurrentUserItemsPage from './components/items/CurrentUserItemsPage';
 
 function App() {
@@ -55,10 +55,10 @@ function App() {
         <Route path="/" element={<HomePage userLoggedIn={userLoggedIn} />} />
         <Route path="/login" element={<Login setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/signup" element={<Signup setUserLoggedIn={setUserLoggedIn} />} />
-        <Route path="/items" element={<ItemsListPage items={items} />} />
+        <Route path="/items" element={<AllItemsList items={items} />} />
         <Route path='/items/new' element={<AddItemPage users={users} setUsers={setUsers} locations={locations} />} />
         <Route path='/items/:id/edit' element={<EditItemPage users={users} setUsers={setUsers} editItem={editItem} locations={locations} />} />
-        <Route path='/items/locations' element={<ItemsListByLocationPage users={users} locations={locations} />} />
+        <Route path='/items/locations' element={<ItemsListByLocation items={items} />} />
         <Route path='/users/:id/items' element={<CurrentUserItemsPage users={users} setUsers={setUsers} locations={locations} setEditItem={setEditItem} />} />
       </Routes>
     </BrowserRouter>

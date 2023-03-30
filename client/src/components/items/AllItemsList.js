@@ -3,10 +3,11 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import ItemCard from './ItemCard';
 
-const ItemsListPage = ({ items }) => {
+const AllItemsList = ({ items }) => {
 
   const displayItems = items.map(item => 
     <ItemCard key={item.id} item={item} />)
+    
         return (
           <div>
             <Container sx={{ py: 4 }} maxWidth="md">
@@ -18,4 +19,4 @@ const ItemsListPage = ({ items }) => {
   )
 }
 
-export default ItemsListPage
+export default AllItemsList

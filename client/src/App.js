@@ -8,7 +8,7 @@ import AllItemsList from './components/items/AllItemsList';
 import AddItemPage from './components/items/AddItemPage';
 import EditItemPage from './components/items/EditItemPage';
 import ItemsListByLocation from './components/items/ItemsListByLocation';
-import CurrentUserItemsPage from './components/items/CurrentUserItemsPage';
+import CurrentUserItemsList from './components/items/CurrentUserItemsList.js';
 
 function App() {
 
@@ -30,7 +30,6 @@ function App() {
       .then(allItems => setItems(allItems))
   },[])
 
-  console.log(items)
 
   useEffect(() => {
     fetch('/locations')
@@ -59,7 +58,7 @@ function App() {
         <Route path='/items/new' element={<AddItemPage users={users} setUsers={setUsers} locations={locations} />} />
         <Route path='/items/:id/edit' element={<EditItemPage users={users} setUsers={setUsers} editItem={editItem} locations={locations} />} />
         <Route path='/items/locations' element={<ItemsListByLocation items={items} />} />
-        <Route path='/users/:id/items' element={<CurrentUserItemsPage users={users} setUsers={setUsers} locations={locations} setEditItem={setEditItem} />} />
+        <Route path='/users/:id/items' element={<CurrentUserItemsList items={items} setItems={setItems} setEditItem={setEditItem} />} />
       </Routes>
     </BrowserRouter>
   );

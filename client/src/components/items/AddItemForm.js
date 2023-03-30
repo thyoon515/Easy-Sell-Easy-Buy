@@ -11,7 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { CurrentUserContext } from '../../context/CurrentUser';
 
-const AddItemPage = ({ users, setUsers, locations }) => {
+const AddItemForm = ({ items, setItems, currentUserItems, setCurrentUserItems, locations }) => {
     
   const navigate = useNavigate();
 
@@ -26,11 +26,10 @@ const AddItemPage = ({ users, setUsers, locations }) => {
   const [currentUser] = useContext(CurrentUserContext);
 
   const handleAddItem = (postNewItem) => {
-    const newCurrentUserItemsArray = [...currentUser.items, postNewItem]
-    currentUser.items = newCurrentUserItemsArray
-    const filteredUsers = users.filter(user => user.id !== currentUser.id)
-    const updatedUsers = [...filteredUsers, currentUser]
-    setUsers(updatedUsers)
+    const updatedCurrentUserItems = [...currentUserItems, postNewItem]
+    setCurrentUserItems(updatedCurrentUserItems)
+    const updatedItems = [...items, postNewItem]
+    setItems(updatedItems)
   }
 
   const handleSubmit = (e) => {
@@ -45,7 +44,6 @@ const AddItemPage = ({ users, setUsers, locations }) => {
         image: addItemFormData.image,
         price: addItemFormData.price,
         description: addItemFormData.description,
-        user_id: currentUser.id,
         location_id: selectLocation
       }),
     })
@@ -161,4 +159,4 @@ const AddItemPage = ({ users, setUsers, locations }) => {
   );
 }
 
-export default AddItemPage
+export default AddItemForm

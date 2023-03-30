@@ -4,8 +4,8 @@ import NavBar from './components/navigation/NavBar';
 import HomePage from "./components/static/HomePage";
 import Login from "./components/sessions/Login";
 import Signup from "./components/sessions/Signup";
-import AllItemsList from './components/items/AllItemsList';
-import AddItemPage from './components/items/AddItemPage';
+import ItemsList from './components/items/ItemsList';
+import AddItemForm from './components/items/AddItemForm';
 import EditItemForm from './components/items/EditItemForm';
 import ItemsListByLocation from './components/items/ItemsListByLocation';
 import CurrentUserItemsList from './components/items/CurrentUserItemsList.js';
@@ -15,15 +15,8 @@ function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [editItem, setEditItem] = useState([]);
   const [locations, setLocations] = useState([]);
-  const [users, setUsers] = useState([]);
   const [items, setItems] = useState([]);
   const [currentUserItems, setCurrentUserItems] = useState([]);
-
-  useEffect(() => {
-    fetch('/users')
-      .then(r => r.json())
-      .then(usersData => setUsers(usersData))
-  },[])
 
   useEffect(() => {
     fetch('/items')
@@ -55,8 +48,8 @@ function App() {
         <Route path="/" element={<HomePage userLoggedIn={userLoggedIn} />} />
         <Route path="/login" element={<Login setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/signup" element={<Signup setUserLoggedIn={setUserLoggedIn} />} />
-        <Route path="/items" element={<AllItemsList items={items} />} />
-        <Route path='/items/new' element={<AddItemPage users={users} setUsers={setUsers} locations={locations} />} />
+        <Route path="/items" element={<ItemsList items={items} />} />
+        <Route path='/items/new' element={<AddItemForm items={items} setItems={setItems} currentUserItems={currentUserItems} setCurrentUserItems={setCurrentUserItems} locations={locations} />} />
         <Route path='/items/:id/edit' element={<EditItemForm items={items} setItems={setItems} currentUserItems={currentUserItems} setCurrentUserItems={setCurrentUserItems} editItem={editItem} locations={locations} />} />
         <Route path='/items/locations' element={<ItemsListByLocation items={items} />} />
         <Route path='/users/:id/items' element={<CurrentUserItemsList items={items} setItems={setItems} currentUserItems={currentUserItems} setCurrentUserItems={setCurrentUserItems} setEditItem={setEditItem} />} />

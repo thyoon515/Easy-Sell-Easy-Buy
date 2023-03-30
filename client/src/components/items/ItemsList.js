@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import ItemCard from './ItemCard';
 
-const AllItemsList = ({ items }) => {
+const ItemsList = ({ items }) => {
 
   const displayItems = items.map(item => 
     <ItemCard key={item.id} item={item} />)
@@ -19,4 +19,4 @@ const AllItemsList = ({ items }) => {
   )
 }
 
-export default AllItemsList
+export default ItemsList

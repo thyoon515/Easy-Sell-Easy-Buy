@@ -24,11 +24,9 @@ const ItemsListByLocation = ({ items }) => {
       }
     })
 
-    console.log(filteredItems)
-
     const displayItemsByLocation = filteredItems.map(item => 
       <ItemByLocationCard key={item.id} item={item} />)
-     
+
     return (
       <Container maxWidth="sm">
         <Box sx={{ m: 4 }} >

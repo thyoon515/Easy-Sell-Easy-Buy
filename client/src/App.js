@@ -6,7 +6,7 @@ import Login from "./components/sessions/Login";
 import Signup from "./components/sessions/Signup";
 import AllItemsList from './components/items/AllItemsList';
 import AddItemPage from './components/items/AddItemPage';
-import EditItemPage from './components/items/EditItemPage';
+import EditItemForm from './components/items/EditItemForm';
 import ItemsListByLocation from './components/items/ItemsListByLocation';
 import CurrentUserItemsList from './components/items/CurrentUserItemsList.js';
 
@@ -17,6 +17,7 @@ function App() {
   const [locations, setLocations] = useState([]);
   const [users, setUsers] = useState([]);
   const [items, setItems] = useState([]);
+  const [currentUserItems, setCurrentUserItems] = useState([]);
 
   useEffect(() => {
     fetch('/users')
@@ -56,9 +57,9 @@ function App() {
         <Route path="/signup" element={<Signup setUserLoggedIn={setUserLoggedIn} />} />
         <Route path="/items" element={<AllItemsList items={items} />} />
         <Route path='/items/new' element={<AddItemPage users={users} setUsers={setUsers} locations={locations} />} />
-        <Route path='/items/:id/edit' element={<EditItemPage users={users} setUsers={setUsers} editItem={editItem} locations={locations} />} />
+        <Route path='/items/:id/edit' element={<EditItemForm items={items} setItems={setItems} currentUserItems={currentUserItems} setCurrentUserItems={setCurrentUserItems} editItem={editItem} locations={locations} />} />
         <Route path='/items/locations' element={<ItemsListByLocation items={items} />} />
-        <Route path='/users/:id/items' element={<CurrentUserItemsList items={items} setItems={setItems} setEditItem={setEditItem} />} />
+        <Route path='/users/:id/items' element={<CurrentUserItemsList items={items} setItems={setItems} currentUserItems={currentUserItems} setCurrentUserItems={setCurrentUserItems} setEditItem={setEditItem} />} />
       </Routes>
     </BrowserRouter>
   );

@@ -11,7 +11,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { CurrentUserContext } from '../../context/CurrentUser';
 
-const EditItemPage = ({ users, setUsers, editItem, locations }) => {
+const EditItemForm = ({ items, setItems, currentUserItems, setCurrentUserItems, editItem, locations }) => {
 
     const [currentUser] = useContext(CurrentUserContext);
 
@@ -24,20 +24,25 @@ const EditItemPage = ({ users, setUsers, editItem, locations }) => {
       description: editItem.description
     });
     const [errors, setErrors] = useState([]);
-    const [editSelectLocation, setEditSelectLocation] = useState(editItem.location_id);
+    const [editSelectLocation, setEditSelectLocation] = useState(editItem.location.id);
 
     const handleEditedItem = (editedItem) => {
-      const currentUserItemsArray = currentUser.items.map(item => {
+      const updatedCurrentUserItems = currentUserItems.map(item => {
         if(item.id === editedItem.id){
           return editedItem
         } else {
           return item
         }
       })
-      currentUser.items = currentUserItemsArray
-      const filteredUsers = users.filter(user => user.id !== currentUser.id)
-      const updatedUsers = [...filteredUsers, currentUser]
-      setUsers(updatedUsers)
+      setCurrentUserItems(updatedCurrentUserItems)
+      const updatedItems = items.map(item => {
+        if(item.id === editedItem.id){
+          return editedItem
+        } else {
+          return item
+        }
+      })
+      setItems(updatedItems)
     }
   
     const handleSubmitEdit = (e) => {
@@ -161,4 +166,4 @@ const EditItemPage = ({ users, setUsers, editItem, locations }) => {
     );
 }
 
-export default EditItemPage
+export default EditItemForm

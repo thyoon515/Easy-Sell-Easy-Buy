@@ -4,17 +4,17 @@ import Container from '@mui/material/Container';
 import { useParams } from 'react-router-dom';
 import CurrentUserItemCard from './CurrentUserItemCard';
 
-const CurrentUserItemsList = ({ items, setItems, setEditItem }) => {
+const CurrentUserItemsList = ({ items, setItems, setEditItem, currentUserItems, setCurrentUserItems }) => {
     
   const {id} = useParams();
   const [errors, setErrors] = useState([]);
-  const [currentUserItems, setCurrentUserItems] = useState([])
+  
   
     useEffect(() => {
       // eslint-disable-next-line
       const filteredCurrentUserItems = items.filter(item => item.user.id == id)
         setCurrentUserItems(filteredCurrentUserItems)
-    },[items, id])
+    },[items, id, setCurrentUserItems])
 
 
   const handleRemoveItem = (deletedItem) => {

@@ -11,7 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { CurrentUserContext } from '../../context/CurrentUser';
 
-const AddItemForm = ({ items, setItems, currentUserItems, setCurrentUserItems, locations }) => {
+const AddItemForm = ({ items, setItems, locations }) => {
     
   const navigate = useNavigate();
 
@@ -26,8 +26,8 @@ const AddItemForm = ({ items, setItems, currentUserItems, setCurrentUserItems, l
   const [currentUser] = useContext(CurrentUserContext);
 
   const handleAddItem = (postNewItem) => {
-    const updatedCurrentUserItems = [...currentUserItems, postNewItem]
-    setCurrentUserItems(updatedCurrentUserItems)
+    const updatedCurrentUserItems = [...currentUser.items, postNewItem]
+    currentUser.items = updatedCurrentUserItems
     const updatedItems = [...items, postNewItem]
     setItems(updatedItems)
   }

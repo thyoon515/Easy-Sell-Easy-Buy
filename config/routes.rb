@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :locations, only: [:index]
   resources :items
-  resources :users, only: [:index, :show, :create]
+  resources :users, only: [:show, :create]
   post "/login", to: "sessions#create"
   get "/me", to: "users#show"
   delete "/logout", to: "sessions#destroy"

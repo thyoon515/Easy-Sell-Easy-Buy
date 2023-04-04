@@ -11,7 +11,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { CurrentUserContext } from '../../context/CurrentUser';
 
-const EditItemForm = ({ items, setItems, currentUserItems, setCurrentUserItems, editItem, locations }) => {
+const EditItemForm = ({ items, setItems, editItem, locations }) => {
 
     const [currentUser] = useContext(CurrentUserContext);
 
@@ -27,14 +27,14 @@ const EditItemForm = ({ items, setItems, currentUserItems, setCurrentUserItems, 
     const [editSelectLocation, setEditSelectLocation] = useState(editItem.location.id);
 
     const handleEditedItem = (editedItem) => {
-      const updatedCurrentUserItems = currentUserItems.map(item => {
+      const updatedCurrentUserItems = currentUser.items.map(item => {
         if(item.id === editedItem.id){
           return editedItem
         } else {
           return item
         }
       })
-      setCurrentUserItems(updatedCurrentUserItems)
+      currentUser.items = updatedCurrentUserItems
       const updatedItems = items.map(item => {
         if(item.id === editedItem.id){
           return editedItem

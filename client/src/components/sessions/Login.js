@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -39,9 +39,9 @@ const Login = ({ setUserLoggedIn }) => {
     })
       .then(res => {
         if(res.ok){
-            res.json().then((user) => {
+            res.json().then((loggedInUser) => {
               setUserLoggedIn(true)
-              setCurrentUser(user)
+              setCurrentUser(loggedInUser)
               navigate('/')
             })
         }else{

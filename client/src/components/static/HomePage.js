@@ -1,11 +1,11 @@
-import { useContext } from 'react'
+import {  useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { CurrentUserContext } from '../../context/CurrentUser';
 
 const HomePage = ({ userLoggedIn }) => {
 
-  const [ currentUser ] = useContext(CurrentUserContext)
+  const [currentUser] = useContext(CurrentUserContext)
 
   const currentUserExist = () => {
     return (

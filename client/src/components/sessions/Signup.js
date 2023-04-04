@@ -41,9 +41,9 @@ const Signup = ({ setUserLoggedIn }) => {
     })
     .then(res => {
       if(res.ok){
-          res.json().then((user) => {
+          res.json().then((newUser) => {
             setUserLoggedIn(true)
-            setCurrentUser(user)
+            setCurrentUser(newUser)
             navigate('/')
           })
       }else{
